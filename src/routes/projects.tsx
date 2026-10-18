@@ -12,7 +12,7 @@ import { Layout, Hero, CTA } from '@/components/site/Layout';
 import { Button } from '@/components/ui/button';
 import { meta } from '@/components/site/data';
 import { projectsData, filterCategories, ProjectItem } from '@/components/site/FeaturedProjectsSection';
-import cityHero from '@/assets/city-hero.jpg';
+import projectsHero from '@/assets/projects-hero.jpg';
 
 export const Route = createFileRoute('/projects')({
   head: () =>
@@ -36,9 +36,9 @@ function ProjectsPage() {
     <Layout>
       <Hero
         eyebrow="PORTFOLIO & CASE STUDIES"
-        title={<>Proven Deliverables. <span className="hero-brand-accent">Real Business Impact.</span></>}
+        title={<>Proven Deliverables. <span className="hero-brand-accent">Measurable Business Impact.</span></>}
         description="Explore how Right PPT Solutions architects, engineers, and scales mission-critical digital products, high-conversion web apps, and modern AI platforms."
-        image={cityHero}
+        image={projectsHero}
       />
 
       <section className="section projects-page-main">
@@ -102,7 +102,6 @@ function ProjectsPage() {
                     height={380}
                   />
                   <div className="project-image-gradient" />
-                  <span className="project-card-num">0{idx + 1}</span>
                   <span className="project-category-badge">{p.categoryLabel}</span>
                 </div>
 

@@ -210,7 +210,6 @@ export function FeaturedProjectsSection() {
                   loading="lazy"
                 />
                 <div className="project-image-gradient" />
-                <span className="project-card-num">0{idx + 1}</span>
                 <span className="project-category-badge">{project.categoryLabel}</span>
               </div>
 

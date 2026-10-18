@@ -15,6 +15,13 @@ import {
 import { Layout, Hero } from '@/components/site/Layout';
 import { meta, services } from '@/components/site/data';
 import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
 import team from '@/assets/contact-hero.jpg';
 
 export const Route = createFileRoute('/contact')({
@@ -28,6 +35,7 @@ export const Route = createFileRoute('/contact')({
 
 function ContactPage() {
   const [ready, setReady] = useState(false);
+  const [selectedService, setSelectedService] = useState('Web Development');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -142,17 +150,21 @@ function ContactPage() {
                 </div>
 
                 <div className="modern-field">
-                  <label htmlFor="service">Solution Area of Interest</label>
-                  <select id="service" name="service" defaultValue="Choose a service">
-                    <option value="Choose a service">Choose a service</option>
-                    {services.map((s) => (
-                      <option key={s.name} value={s.name}>
-                        {s.name} ({s.label})
-                      </option>
-                    ))}
-                    <option value="Enterprise Custom Solution">Enterprise Custom Solution</option>
-                    <option value="Consulting & Advisory">Consulting &amp; Advisory</option>
-                  </select>
+                  <label htmlFor="service-select">Solution Area of Interest</label>
+                  <input type="hidden" name="service" value={selectedService} />
+                  <Select value={selectedService} onValueChange={setSelectedService}>
+                    <SelectTrigger id="service-select" className="modern-select-trigger">
+                      <SelectValue placeholder="Choose a service area…" />
+                    </SelectTrigger>
+                    <SelectContent className="modern-select-content">
+                      <SelectItem value="Web Development">Web Development (Websites &amp; Digital Experiences)</SelectItem>
+                      <SelectItem value="Software Development">Software Development (Custom Applications &amp; Platforms)</SelectItem>
+                      <SelectItem value="Digital Marketing">Digital Marketing (Strategy, Visibility &amp; Growth)</SelectItem>
+                      <SelectItem value="Technology Solutions">Technology Solutions (Innovation &amp; Enablement)</SelectItem>
+                      <SelectItem value="Enterprise Custom Solution">Enterprise Custom Solution</SelectItem>
+                      <SelectItem value="Consulting & Advisory">Consulting &amp; Advisory</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="modern-field">
@@ -182,6 +194,40 @@ function ContactPage() {
                   </div>
                 )}
               </form>
+            </div>
+          </div>
+
+          {/* Interactive Map Embed */}
+          <div className="contact-map-wrapper reveal">
+            <div className="contact-map-card">
+              <div className="contact-map-header">
+                <div className="map-header-left">
+                  <span className="eyebrow">— OUR HEADQUARTERS —</span>
+                  <h3>Visit Our Office in Hyderabad</h3>
+                  <p>Plot 3 Viswasnagar, Hyderabad, Telangana 500086, India</p>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Plot+3+Viswasnagar+Hyderabad+Telangana+500086"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="map-directions-btn"
+                >
+                  <span>Get Directions</span>
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
+              <div className="map-iframe-container">
+                <iframe
+                  title="Right PPT Solutions Headquarters Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15228.665678434778!2d78.508!3d17.404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd941%3A0x6b7bf6a20d20d754!2sHyderabad%2C%20Telangana%20500086!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="340"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
           </div>
 
