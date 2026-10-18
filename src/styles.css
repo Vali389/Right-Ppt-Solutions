@@ -3802,12 +3802,36 @@
 /* =========================================================================
    FLOATING INTERACTIVE CONTROLS (Scroll-To-Top & WhatsApp Integration)
    ========================================================================= */
+.whatsapp-float-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff !important;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  z-index: 995;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.whatsapp-float-btn:hover {
+  transform: translateY(-4px) scale(1.06);
+  background: #20bd5a;
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+  color: #ffffff !important;
+}
+
 .scroll-to-top-btn {
   position: fixed;
   right: 28px;
-  bottom: 92px;
-  width: 44px;
-  height: 44px;
+  bottom: 94px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #ffffff;
   color: #0f172a;
@@ -3826,31 +3850,6 @@
   color: #ffffff;
   border-color: #0084ff;
   box-shadow: 0 12px 28px rgba(0, 132, 255, 0.35);
-}
-
-.whatsapp-float-btn {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-  color: #ffffff;
-  padding: 10px 18px 10px 12px;
-  border-radius: 30px;
-  box-shadow: 0 8px 26px rgba(37, 211, 102, 0.38);
-  z-index: 995;
-  text-decoration: none;
-  font-size: 13.5px;
-  font-weight: 700;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.whatsapp-float-btn:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 34px rgba(37, 211, 102, 0.48);
-  color: #ffffff;
 }
 
 .wa-icon-wrap {
@@ -5902,6 +5901,96 @@
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* =========================================================================
+   13. FOOTER CONTACT ALIGNMENT & PRESENTATION
+   ========================================================================= */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-contact-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  margin-bottom: 0 !important;
+}
+
+.contact-icon-bubble {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-icon-bubble.blue {
+  background: rgba(0, 132, 255, 0.12);
+  color: #0084ff;
+  border: 1px solid rgba(0, 132, 255, 0.25);
+}
+
+.contact-icon-bubble.green {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.footer-contact-item small {
+  display: block !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #94a3b8 !important;
+  margin-bottom: 2px !important;
+  line-height: 1.3 !important;
+}
+
+.footer-contact-item strong {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #f1f5f9 !important;
+  line-height: 1.4 !important;
+}
+
+.footer-contact-item span {
+  display: block !important;
+  font-size: 13px !important;
+  color: #cbd5e1 !important;
+  line-height: 1.5 !important;
+}
+
+.footer-hours-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: #e2e8f0 !important;
+  width: fit-content !important;
+  margin-top: 4px !important;
+}
+
+.footer-hours-pill .status-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  display: inline-block;
 }
 
 
