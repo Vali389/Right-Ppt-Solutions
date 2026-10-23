@@ -7,6 +7,10 @@ import {
   Sparkles,
   ShieldCheck,
   X,
+  Target,
+  AlertTriangle,
+  Award,
+  Zap,
 } from 'lucide-react';
 import { Layout, Hero, CTA } from '@/components/site/Layout';
 import { Button } from '@/components/ui/button';
@@ -18,7 +22,7 @@ export const Route = createFileRoute('/projects')({
   head: () =>
     meta(
       'Client Projects & Case Studies | Right PPT Solutions',
-      'Explore our portfolio of enterprise web applications, SaaS platforms, high-conversion e-commerce storefronts, and cloud AI systems.'
+      'Explore real case studies across legacy modernization, enterprise CRM, digital publishing, and applied AI.'
     ),
   component: ProjectsPage,
 });
@@ -36,8 +40,8 @@ function ProjectsPage() {
     <Layout>
       <Hero
         eyebrow="PORTFOLIO & CASE STUDIES"
-        title={<>Proven Deliverables. <span className="hero-brand-accent">Measurable Business Impact.</span></>}
-        description="Explore how Right PPT Solutions architects, engineers, and scales mission-critical digital products, high-conversion web apps, and modern AI platforms."
+        title={<>Explore Our <span className="hero-brand-accent">Project Work.</span></>}
+        description="Legacy Modernization, CRM and Membership, Digital Publishing and Learning, and Cloud CRM Migration."
         image={projectsHero}
       />
 
@@ -46,13 +50,13 @@ function ProjectsPage() {
           {/* Header Bar with Count */}
           <div className="projects-page-header reveal">
             <div>
-              <span className="eyebrow">— VERIFIED CLIENT WORK —</span>
-              <h2>Enterprise Platforms &amp; <span className="hero-brand-accent">Digital Products</span></h2>
-              <p>Each solution is custom-built with production-grade engineering, full code ownership, and zero lock-in.</p>
+              <span className="eyebrow">— REAL-WORLD DELIVERABLES —</span>
+              <h2>Proven Deliverables &amp; <span className="hero-brand-accent">Measurable Business Impact</span></h2>
+              <p>Explore detailed technical architectures, business challenges, and measurable project outcomes.</p>
             </div>
             <div className="projects-stat-badge">
-              <strong>6+</strong>
-              <span>Featured Deployments</span>
+              <strong>7</strong>
+              <span>Verified Case Studies</span>
             </div>
           </div>
 
@@ -77,7 +81,7 @@ function ProjectsPage() {
 
           {/* Projects Grid */}
           <div className="portfolio-grid">
-            {filteredProjects.map((p, idx) => (
+            {filteredProjects.map((p) => (
               <article
                 key={p.id}
                 className={`project-card reveal tone-${p.tone}`}
@@ -126,7 +130,7 @@ function ProjectsPage() {
 
                   {/* Tech Stack Chips */}
                   <div className="project-tech-chips">
-                    {p.techStack.map((tech) => (
+                    {p.techStack.slice(0, 4).map((tech) => (
                       <span key={tech} className="tech-chip">
                         {tech}
                       </span>
@@ -143,7 +147,7 @@ function ProjectsPage() {
                         setSelectedProject(p);
                       }}
                     >
-                      <span>Explore Architecture &amp; Delivery</span>
+                      <span>Explore Full Case Study</span>
                       <ArrowUpRight size={15} />
                     </button>
                   </div>
@@ -178,7 +182,7 @@ function ProjectsPage() {
             <div className="trust-band-action">
               <Button asChild size="lg" className="portfolio-cta-btn">
                 <Link to="/contact">
-                  Start Your Project <ArrowRight size={17} />
+                  Talk to RightPPT <ArrowRight size={17} />
                 </Link>
               </Button>
             </div>
@@ -210,45 +214,89 @@ function ProjectsPage() {
             <div className="modal-header">
               <span className="modal-cat-tag">{selectedProject.categoryLabel} · {selectedProject.year}</span>
               <h2 id="modal-title">{selectedProject.name}</h2>
-              <p className="modal-client">Client: {selectedProject.client}</p>
+              <p className="modal-client">{selectedProject.client}</p>
             </div>
 
-            <p className="modal-desc">{selectedProject.description}</p>
+            <div className="modal-body">
+              <p className="modal-desc">{selectedProject.description}</p>
 
-            <div className="modal-metrics-box">
-              {selectedProject.metrics.map((m) => (
-                <div key={m.label} className="modal-metric-col">
-                  <strong>{m.value}</strong>
-                  <span>{m.label}</span>
+              <div className="modal-metrics-box">
+                {selectedProject.metrics.map((m) => (
+                  <div key={m.label} className="modal-metric-col">
+                    <strong>{m.value}</strong>
+                    <span>{m.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {selectedProject.objectives && selectedProject.objectives.length > 0 && (
+                <div className="modal-section-block">
+                  <h4>BUSINESS OBJECTIVES</h4>
+                  <ul className="modal-deliverables-list">
+                    {selectedProject.objectives.map((obj) => (
+                      <li key={obj}>
+                        <Target size={16} className="text-blue-500 shrink-0" />
+                        <span>{obj}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </div>
+              )}
 
-            <div className="modal-section-block">
-              <h4>Key Production Deliverables</h4>
-              <ul className="modal-deliverables-list">
-                {selectedProject.deliverables.map((d) => (
-                  <li key={d}>
-                    <CheckCircle2 size={16} />
-                    <span>{d}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {selectedProject.challenges && selectedProject.challenges.length > 0 && (
+                <div className="modal-section-block">
+                  <h4>PROJECT CHALLENGES</h4>
+                  <ul className="modal-deliverables-list">
+                    {selectedProject.challenges.map((ch) => (
+                      <li key={ch}>
+                        <AlertTriangle size={16} className="text-amber-500 shrink-0" />
+                        <span>{ch}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-            <div className="modal-section-block">
-              <h4>Technology Stack &amp; Infrastructure</h4>
-              <div className="modal-tech-pills">
-                {selectedProject.techStack.map((tech) => (
-                  <span key={tech} className="modal-pill">{tech}</span>
-                ))}
+              <div className="modal-section-block">
+                <h4>KEY PRODUCTION DELIVERABLES</h4>
+                <ul className="modal-deliverables-list">
+                  {selectedProject.deliverables.map((d) => (
+                    <li key={d}>
+                      <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {selectedProject.outcomes && selectedProject.outcomes.length > 0 && (
+                <div className="modal-section-block">
+                  <h4>BUSINESS OUTCOMES & VALUE</h4>
+                  <ul className="modal-deliverables-list">
+                    {selectedProject.outcomes.map((out) => (
+                      <li key={out}>
+                        <Award size={16} className="text-purple-500 shrink-0" />
+                        <span>{out}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="modal-section-block">
+                <h4>TECHNOLOGY STACK &amp; INFRASTRUCTURE</h4>
+                <div className="modal-tech-pills">
+                  {selectedProject.techStack.map((tech) => (
+                    <span key={tech} className="modal-pill">{tech}</span>
+                  ))}
+                </div>
               </div>
             </div>
 
             <div className="modal-footer">
               <Button asChild className="modal-discuss-btn">
                 <Link to="/contact">
-                  Discuss a Similar Solution <ArrowUpRight size={16} />
+                  Discuss This Solution with RightPPT <ArrowUpRight size={16} />
                 </Link>
               </Button>
             </div>

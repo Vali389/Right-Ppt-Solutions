@@ -48,19 +48,19 @@ function ContactPage() {
   return (
     <Layout>
       <Hero
-        eyebrow="LET’S MAKE IT HAPPEN"
-        title={<>Get In Touch With <span className="hero-brand-accent">Our Architects.</span></>}
-        description="A great partnership begins with a conversation. Tell us what you have in mind and let's craft an enterprise-grade digital solution."
+        eyebrow="CONNECT WITH OUR TEAM"
+        title={<>Let’s Discuss Your <span className="hero-brand-accent">Business Needs.</span></>}
+        description="Build a new application, improve an existing system or explore practical AI solutions. Have a business process you want to improve? Talk to RightPPT."
         image={team}
       />
 
       <section className="contact-page-wrapper">
         <div className="container">
           <div className="contact-hero-banner reveal">
-            <span className="eyebrow">— YOUR NEXT STEP —</span>
-            <h2>Start Something <span className="hero-brand-accent">Remarkable</span></h2>
+            <span className="eyebrow">— LET'S COLLABORATE —</span>
+            <h2>Talk to <span className="hero-brand-accent">RightPPT</span></h2>
             <p>
-              Have a project, a question, or a digital vision? Our solutions architects and engineering leads are ready to collaborate.
+              Build a new application, improve an existing system or explore practical AI solutions. Tell us about your operational challenges and we’ll define the next step.
             </p>
           </div>
 
@@ -89,7 +89,7 @@ function ContactPage() {
                   </div>
                   <div className="channel-meta">
                     <small>Headquarters Location</small>
-                    <strong>Plot 3 Viswasnagar, Hyderabad, Telangana 500086</strong>
+                    <strong>Innov8 Pranava Business Park- 7th Floor KONDAPUR, KOTHAGUDA, Telangana- 500084</strong>
                   </div>
                 </div>
 
@@ -203,11 +203,11 @@ function ContactPage() {
               <div className="contact-map-header">
                 <div className="map-header-left">
                   <span className="eyebrow">— OUR HEADQUARTERS —</span>
-                  <h3>Visit Our Office in Hyderabad</h3>
-                  <p>Plot 3 Viswasnagar, Hyderabad, Telangana 500086, India</p>
+                  <h3>Visit Our Office in Kondapur, Hyderabad</h3>
+                  <p>Innov8 Pranava Business Park- 7th Floor KONDAPUR, KOTHAGUDA, Telangana- 500084</p>
                 </div>
                 <a
-                  href="https://maps.google.com/?q=Plot+3+Viswasnagar+Hyderabad+Telangana+500086"
+                  href="https://maps.google.com/?q=Innov8+Pranava+Business+Park+Kondapur+Kothaguda+Telangana+500084"
                   target="_blank"
                   rel="noreferrer"
                   className="map-directions-btn"
@@ -219,7 +219,7 @@ function ContactPage() {
               <div className="map-iframe-container">
                 <iframe
                   title="Right PPT Solutions Headquarters Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15228.665678434778!2d78.508!3d17.404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd941%3A0x6b7bf6a20d20d754!2sHyderabad%2C%20Telangana%20500086!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  src="https://maps.google.com/maps?q=Innov8+Pranava+Business+Park+Kondapur+Kothaguda+Telangana+500084&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="340"
                   style={{ border: 0 }}

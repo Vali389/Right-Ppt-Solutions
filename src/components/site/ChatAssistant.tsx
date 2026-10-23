@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MessageCircle, X, Send, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-const answers = { Services:'We offer web development, software development, digital marketing, and technology solutions. What would you like to explore?', Contact:'You can reach our team at +91 73862 57784, or start a conversation on WhatsApp.', Location:'We are located at Plot 3 Viswasnagar, Hyderabad, Telangana 500086.', Hours:'Our published business hours are 9:00 am – 5:00 pm, daily.' };
+const answers = { Services:'We specialize in Software Development & Modernization, Logistics & E-commerce, AI Networking & Security, and Nonprofits & Associations. What would you like to explore?', Contact:'You can reach our team at +91 73862 57784, or start a conversation on WhatsApp.', Location:'We are located at Innov8 Pranava Business Park- 7th Floor KONDAPUR, KOTHAGUDA, Telangana- 500084.', Hours:'Our published business hours are 9:00 am – 5:00 pm, daily.' };
 export function ChatAssistant(){
  const [open,setOpen]=useState(false); const [input,setInput]=useState(''); const [messages,setMessages]=useState([{from:'bot',text:'Hello! Welcome to Right PPT. How can we help you today?'}]);
  function send(text:string){if(!text.trim())return; const match = /hour|open/i.test(text)?'Hours':/where|address|location/i.test(text)?'Location':/contact|phone|call/i.test(text)?'Contact':/service|web|software|marketing/i.test(text)?'Services':null; setMessages(m=>[...m,{from:'you',text},{from:'bot',text:match?answers[match]:'Our team can help with your project. Share your requirements with us on WhatsApp for a personal response.'}]);setInput('');}

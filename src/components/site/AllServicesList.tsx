@@ -9,9 +9,9 @@ export function AllServicesList() {
     <section className="section all-services-section" id="all-services">
       <div className="container">
         <SectionTitle
-          label="OUR CORE CAPABILITIES"
-          title="Full-Lifecycle Digital Engineering & Technology Solutions"
-          description="From high-conversion web experiences and enterprise SaaS to digital growth campaigns and cloud modernizations."
+          label="TECHNOLOGY THAT SIMPLIFIES BUSINESS"
+          title="Enterprise Solutions Built Around Your Business"
+          description="RightPPT builds, modernizes and connects business applications—helping you automate work, improve visibility and put AI to practical use."
         />
 
         <div className="all-services-stack">
@@ -62,7 +62,7 @@ export function AllServicesList() {
                           to="/services/$serviceId"
                           params={{ serviceId: service.slug }}
                         >
-                          Explore Service in Detail <ArrowUpRight size={17} />
+                          {service.knowMoreText} <ArrowUpRight size={17} />
                         </Link>
                       </Button>
                       <a

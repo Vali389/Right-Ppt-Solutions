@@ -96,7 +96,7 @@ export function Layout({children}:{children:React.ReactNode}){
       window.removeEventListener('scroll', revealVisibleElements);
     };
   }, [children]);
- return <><header className="site-header"><div className="container header-inner"><Link to="/" aria-label="Right PPT Solutions home" className="logo-link"><img src={logoImg} alt="Right PPT Solutions" className="site-logo" width={260} height={92}/></Link><nav className={menu?'navigation navigation-open':'navigation'} aria-label="Main navigation">{nav.map(n=><Link key={n.to} to={n.to} onClick={()=>setMenu(false)} activeProps={{className:'nav-active'}} activeOptions={{exact:n.to==='/'}}>{n.name}</Link>)}</nav><Button asChild className="header-cta"><Link to="/contact">Let’s Talk <ArrowUpRight/></Link></Button><Button variant="ghost" size="icon" className="mobile-menu" aria-label="Toggle navigation" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</Button></div></header><main>{children}</main><footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><Link to="/" aria-label="Right PPT Solutions home" className="footer-logo-wrap"><img src={logoImg} alt="Right PPT Solutions" className="footer-logo-img" loading="lazy" width={260} height={88}/></Link><p className="footer-brand-text">The right combination of <strong className="brand-dot-blue">People</strong>, <strong className="brand-dot-green">Process</strong>, and <strong className="brand-dot-violet">Technology</strong>.</p><div className="footer-brand-chips"><span className="footer-chip chip-blue"><span className="chip-dot dot-blue"/> People</span><span className="footer-chip chip-green"><span className="chip-dot dot-green"/> Process</span><span className="footer-chip chip-violet"><span className="chip-dot dot-violet"/> Technology</span></div><a href="https://wa.me/917386257784" target="_blank" rel="noreferrer" className="footer-whatsapp-btn"><Phone size={15}/> <span>Chat on WhatsApp</span> <ArrowUpRight size={15}/></a></div><div className="footer-nav-col"><h3>Explore</h3><span className="footer-heading-bar bar-blue"/><div className="footer-links-list">{nav.map(n=><Link to={n.to} key={n.to} className="footer-item-link">{n.name}</Link>)}</div></div><div className="footer-nav-col"><h3>Our Expertise</h3><span className="footer-heading-bar bar-green"/><div className="footer-links-list"><Link to="/services/$serviceId" params={{ serviceId: 'web-development' }} className="footer-item-link">Web Development</Link><Link to="/services/$serviceId" params={{ serviceId: 'software-development' }} className="footer-item-link">Software Development</Link><Link to="/services/$serviceId" params={{ serviceId: 'digital-marketing' }} className="footer-item-link">Digital Marketing</Link><Link to="/services/$serviceId" params={{ serviceId: 'technology-solutions' }} className="footer-item-link">Technology Solutions</Link><Link to="/projects" className="footer-item-link">Featured Projects</Link></div></div><div className="footer-contact"><h3>Get In Touch</h3><span className="footer-heading-bar bar-violet"/><a href="tel:+917386257784" className="footer-contact-item"><div className="contact-icon-bubble blue"><Phone size={16}/></div><div><small>Direct Line</small><strong>+91 73862 57784</strong></div></a><div className="footer-contact-item"><div className="contact-icon-bubble green"><MapPin size={16}/></div><div><small>Hyderabad Office</small><span>Plot 3 Viswasnagar, Hyderabad, Telangana 500086</span></div></div><div className="footer-hours-pill"><span className="status-dot-pulse"/> Daily · 9:00 am – 5:00 pm IST</div></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} Right PPT Solutions. All rights reserved.</span><span className="footer-tagline-pillars"><span className="dot dot-blue"/> People <span className="dot dot-green"/> Process <span className="dot dot-violet"/> Technology</span></div></footer><ScrollToTop /><WhatsAppFloat /></>;
+ return <><header className="site-header"><div className="container header-inner"><Link to="/" aria-label="Right PPT Solutions home" className="logo-link"><img src={logoImg} alt="Right PPT Solutions" className="site-logo" width={260} height={92}/></Link><nav className={menu?'navigation navigation-open':'navigation'} aria-label="Main navigation">{nav.map(n=><Link key={n.to} to={n.to} onClick={()=>setMenu(false)} activeProps={{className:'nav-active'}} activeOptions={{exact:n.to==='/'}}>{n.name}</Link>)}</nav><Button asChild className="header-cta"><Link to="/contact">Let’s Talk <ArrowUpRight/></Link></Button><Button variant="ghost" size="icon" className="mobile-menu" aria-label="Toggle navigation" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</Button></div></header><main>{children}</main><footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><Link to="/" aria-label="Right PPT Solutions home" className="footer-logo-wrap"><img src={logoImg} alt="Right PPT Solutions" className="footer-logo-img" loading="lazy" width={260} height={88}/></Link><p className="footer-brand-text">The right combination of <strong className="brand-dot-blue">People</strong>, <strong className="brand-dot-green">Process</strong>, and <strong className="brand-dot-violet">Technology</strong>.</p><div className="footer-brand-chips"><span className="footer-chip chip-blue"><span className="chip-dot dot-blue"/> People</span><span className="footer-chip chip-green"><span className="chip-dot dot-green"/> Process</span><span className="footer-chip chip-violet"><span className="chip-dot dot-violet"/> Technology</span></div><a href="https://wa.me/917386257784" target="_blank" rel="noreferrer" className="footer-whatsapp-btn"><Phone size={15}/> <span>Chat on WhatsApp</span> <ArrowUpRight size={15}/></a></div><div className="footer-nav-col"><h3>Explore</h3><span className="footer-heading-bar bar-blue"/><div className="footer-links-list">{nav.map(n=><Link to={n.to} key={n.to} className="footer-item-link">{n.name}</Link>)}</div></div><div className="footer-nav-col"><h3>Our Expertise</h3><span className="footer-heading-bar bar-green"/><div className="footer-links-list"><Link to="/services/$serviceId" params={{ serviceId: 'software-development' }} className="footer-item-link">Software &amp; Modernization</Link><Link to="/services/$serviceId" params={{ serviceId: 'logistics-solutions' }} className="footer-item-link">Logistics &amp; E-commerce</Link><Link to="/services/$serviceId" params={{ serviceId: 'ai-solutions' }} className="footer-item-link">AI &amp; Network Security</Link><Link to="/services/$serviceId" params={{ serviceId: 'nonprofits-and-associations' }} className="footer-item-link">Nonprofits &amp; Associations</Link><Link to="/projects" className="footer-item-link">Explore Case Studies</Link></div></div><div className="footer-contact"><h3>Get In Touch</h3><span className="footer-heading-bar bar-violet"/><a href="tel:+917386257784" className="footer-contact-item"><div className="contact-icon-bubble blue"><Phone size={16}/></div><div><small>Direct Line</small><strong>+91 73862 57784</strong></div></a><div className="footer-contact-item"><div className="contact-icon-bubble green"><MapPin size={16}/></div><div><small>Corporate Headquarters</small><span>Innov8 Pranava Business Park- 7th Floor KONDAPUR, KOTHAGUDA, Telangana- 500084</span></div></div><div className="footer-hours-pill"><span className="status-dot-pulse"/> Daily · 9:00 am – 5:00 pm IST</div></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} Right PPT Solutions. All rights reserved.</span><span className="footer-tagline-pillars"><span className="dot dot-blue"/> People <span className="dot dot-green"/> Process <span className="dot dot-violet"/> Technology</span></div></footer><ScrollToTop /><WhatsAppFloat /></>;
 }
 export function Hero({
   eyebrow,
@@ -129,7 +129,9 @@ export function Hero({
           {eyebrow}
         </div>
         <h1>
-          {home ? (
+          {title ? (
+            title
+          ) : home ? (
             <>
               Right PPT <span className="hero-brand-accent">Solutions.</span>
             </>
@@ -144,15 +146,14 @@ export function Hero({
           ) : (
             <>
               <Button asChild size="lg" className="hero-cta-btn">
-                <Link to={home ? '/services' : '/contact'}>
-                  {home ? 'Explore Our Services' : 'Let’s Talk About Your Project'}
-                  <ArrowRight size={17} />
+                <Link to="/contact">
+                  Talk to RightPPT <ArrowRight size={17} />
                 </Link>
               </Button>
               {home && (
                 <Button asChild size="lg" variant="outline" className="hero-secondary">
-                  <Link to="/contact">
-                    Let’s Build Together <ArrowUpRight size={17} />
+                  <Link to="/services">
+                    Explore Capabilities <ArrowUpRight size={17} />
                   </Link>
                 </Button>
               )}
@@ -190,15 +191,15 @@ export function CTA() {
       />
       <div className="cta-overlay" />
       <div className="container cta-container reveal">
-        <span className="cta-eyebrow">YOUR NEXT CHAPTER STARTS HERE</span>
-        <h2 className="cta-title">Big ideas deserve the right partner.</h2>
+        <span className="cta-eyebrow">LET’S DISCUSS YOUR BUSINESS NEEDS</span>
+        <h2 className="cta-title">Technology That Simplifies Business.</h2>
         <p className="cta-lead">
-          Let’s bring your vision to life with the right combination of people, process, and technology.
+          Build a new application, improve an existing system or explore practical AI solutions.
         </p>
         <div className="cta-actions">
           <Button asChild size="lg" className="cta-primary-btn">
             <Link to="/contact">
-              Let’s Start a Conversation <ArrowUpRight size={18} />
+              Talk to RightPPT <ArrowUpRight size={18} />
             </Link>
           </Button>
           <a

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Layout, Hero, CTA } from '@/components/site/Layout';
-import { ServicesSection, AboutSection, Testimonials } from '@/components/site/Sections';
+import { ServicesSection, ProjectWorkSection, AboutSection, Testimonials } from '@/components/site/Sections';
 import {
   OrbitSection,
   IndustriesSection,
@@ -14,8 +14,8 @@ import { meta } from '@/components/site/data';
 export const Route = createFileRoute('/')({
   head: () =>
     meta(
-      'IT Solutions for Your Next Chapter',
-      'Right PPT Solutions brings together web development, software engineering, cloud architecture, and digital marketing in Hyderabad.'
+      'Technology That Simplifies Business | RightPPT Solutions',
+      'RightPPT builds, modernizes and connects business applications—helping you automate work, improve visibility and put AI to practical use.'
     ),
   component: Index,
 });
@@ -26,17 +26,18 @@ function Index() {
       <Hero
         home
         eyebrow="PEOPLE. PROCESS. TECHNOLOGY. · ENTERPRISE DIGITAL EXCELLENCE"
-        title="Right PPT Solutions"
-        description="The right combination of people, process, and technology to turn enterprise ambition into measurable market impact. We architect modern web applications, resilient software platforms, cloud infrastructure, and data-driven digital growth."
+        title={<>Technology That <span className="hero-brand-accent">Simplifies Business.</span></>}
+        description="RightPPT builds, modernizes and connects business applications—helping you automate work, improve visibility and put AI to practical use."
       />
+      <ServicesSection />
+      <ProjectWorkSection />
+      <FeaturedProjectsSection />
       <AboutSection />
       <OrbitSection />
-      <ServicesSection />
       <IndustriesSection />
       <PartnerJourneySection />
       <KeyFeaturesSection />
       <WhyChooseUsSection />
-      <FeaturedProjectsSection />
       <Testimonials />
       <CTA />
     </Layout>
