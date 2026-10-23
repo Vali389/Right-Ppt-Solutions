@@ -412,22 +412,38 @@
   margin-bottom: 30px;
 }
 .commitment-feature-card {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: linear-gradient(155deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   border-top: 3px solid var(--tone);
-  border-radius: 14px;
-  padding: 18px 18px 16px;
+  border-radius: 16px;
+  padding: 18px 20px 16px;
   transition: all 0.35s cubic-bezier(0.2, 0.65, 0.3, 1);
   position: relative;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+}
+.commitment-feature-card.tone-blue {
+  --tone: #0084ff;
+  --tone-glow: rgba(0, 132, 255, 0.16);
+}
+.commitment-feature-card.tone-green {
+  --tone: #10b981;
+  --tone-glow: rgba(16, 185, 129, 0.16);
+}
+.commitment-feature-card.tone-violet {
+  --tone: #8b5cf6;
+  --tone-glow: rgba(139, 92, 246, 0.16);
+}
+.commitment-feature-card.tone-cyan {
+  --tone: #00b4d8;
+  --tone-glow: rgba(0, 180, 216, 0.16);
 }
 .commitment-feature-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   background: #ffffff;
   border-color: var(--tone);
-  box-shadow: 0 12px 30px color-mix(in oklab, var(--tone) 16%, transparent);
+  box-shadow: 0 16px 36px var(--tone-glow), 0 4px 12px rgba(15, 23, 42, 0.06);
 }
 .commitment-card-head {
   display: flex;
@@ -436,38 +452,61 @@
   margin-bottom: 12px;
 }
 .commitment-card-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
   display: grid;
   place-items: center;
-  background: color-mix(in oklab, var(--tone) 14%, #ffffff);
+  background: color-mix(in oklab, var(--tone) 12%, #ffffff);
   color: var(--tone);
-  border: 1px solid color-mix(in oklab, var(--tone) 30%, transparent);
-  box-shadow: 0 2px 8px color-mix(in oklab, var(--tone) 15%, transparent);
+  border: 1px solid color-mix(in oklab, var(--tone) 28%, transparent);
+  box-shadow: 0 3px 10px color-mix(in oklab, var(--tone) 20%, transparent);
+  transition: transform 0.3s ease;
+}
+.commitment-feature-card:hover .commitment-card-icon {
+  transform: scale(1.08) rotate(-4deg);
 }
 .commitment-card-tag {
   font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
+  font-weight: 750;
+  letter-spacing: 0.9px;
   color: var(--tone);
   background: color-mix(in oklab, var(--tone) 10%, #ffffff);
-  padding: 3px 8px;
-  border-radius: 5px;
-  border: 1px solid color-mix(in oklab, var(--tone) 25%, transparent);
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in oklab, var(--tone) 24%, transparent);
 }
 .commitment-feature-card h4 {
-  font-size: 13.5px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 750;
   color: #0f172a;
   margin: 0 0 6px;
   line-height: 1.4;
 }
 .commitment-feature-card p {
   font-size: 12px;
-  line-height: 1.65;
+  line-height: 1.6;
   color: #64748b;
-  margin: 0;
+  margin: 0 0 12px;
+}
+.commitment-card-footer-strip {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(226, 232, 240, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.commitment-card-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--tone);
+  background: color-mix(in oklab, var(--tone) 7%, transparent);
+  padding: 2px 8px;
+  border-radius: 4px;
 }
 .commitment-btn {
   height: 48px;
@@ -6489,7 +6528,7 @@
 }
 
 .service-card .service-photo {
-  height: 140px;
+  height: 175px;
   position: relative;
   overflow: hidden;
   border-radius: 13px 13px 0 0;

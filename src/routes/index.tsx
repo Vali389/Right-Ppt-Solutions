@@ -5,8 +5,6 @@ import {
   OrbitSection,
   IndustriesSection,
   PartnerJourneySection,
-  KeyFeaturesSection,
-  WhyChooseUsSection,
 } from '@/components/site/HomeExtras';
 import { FeaturedProjectsSection } from '@/components/site/FeaturedProjectsSection';
 import { meta } from '@/components/site/data';
@@ -35,8 +33,6 @@ function Index() {
       <ProjectWorkSection />
       <IndustriesSection />
       <PartnerJourneySection />
-      <KeyFeaturesSection />
-      <WhyChooseUsSection />
       <FeaturedProjectsSection />
       <Testimonials />
       <CTA />

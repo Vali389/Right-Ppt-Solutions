@@ -172,6 +172,7 @@ const commitmentItems = [
     desc: 'Direct access to dedicated senior technical leads and full milestone transparency.',
     icon: Zap,
     tag: 'CONTINUOUS SPRINTS',
+    metric: '99.8% On-Time Sprints',
     tone: 'blue',
   },
   {
@@ -179,6 +180,7 @@ const commitmentItems = [
     desc: 'Precision-engineered architectures built for your exact domain, security, and performance criteria.',
     icon: Cpu,
     tag: 'DOMAIN TAILORED',
+    metric: 'Zero Legacy Debt',
     tone: 'green',
   },
   {
@@ -186,6 +188,7 @@ const commitmentItems = [
     desc: 'Fast, resilient digital products designed to scale seamlessly on modern enterprise stacks.',
     icon: Cloud,
     tag: 'ELASTIC SCALABILITY',
+    metric: 'Sub-15ms Latency',
     tone: 'violet',
   },
   {
@@ -193,13 +196,14 @@ const commitmentItems = [
     desc: 'Zero black boxes — clean documentation, sprint demos, and smooth knowledge transfer at every milestone.',
     icon: ShieldCheck,
     tag: 'ZERO BLACK BOXES',
+    metric: '100% IP Ownership',
     tone: 'cyan',
   },
 ];
 
 export function AboutSection() {
   return (
-    <section className="section commitment-section">
+    <section className="section commitment-section" id="commitment">
       <div className="commitment-ambient-glow" />
       <div className="container commitment-grid">
         <div className="commitment-visual reveal">
@@ -242,12 +246,18 @@ export function AboutSection() {
               <div key={item.title} className={`commitment-feature-card tone-${item.tone}`}>
                 <div className="commitment-card-head">
                   <span className="commitment-card-icon">
-                    <item.icon size={18} />
+                    <item.icon size={20} />
                   </span>
                   <span className="commitment-card-tag">{item.tag}</span>
                 </div>
                 <h4>{item.title}</h4>
                 <p>{item.desc}</p>
+                <div className="commitment-card-footer-strip">
+                  <span className="commitment-card-metric">
+                    <Check size={12} />
+                    <span>{item.metric}</span>
+                  </span>
+                </div>
               </div>
             ))}
           </div>
