@@ -6,6 +6,12 @@ import {
   IndustriesSection,
   PartnerJourneySection,
 } from '@/components/site/HomeExtras';
+import {
+  AISolutionsSpotlightSection,
+  LogisticsOperationalSpotlightSection,
+  CustomerSuccessStorySection,
+  IntegrationEcosystemTicker,
+} from '@/components/site/ShowcaseSections';
 import { FeaturedProjectsSection } from '@/components/site/FeaturedProjectsSection';
 import { meta } from '@/components/site/data';
 
@@ -27,9 +33,13 @@ function Index() {
         title={<>Technology That <span className="hero-brand-accent">Simplifies Business.</span></>}
         description="RightPPT builds, modernizes and connects business applications—helping you automate work, improve visibility and put AI to practical use."
       />
+      <IntegrationEcosystemTicker />
       <AboutSection />
       <OrbitSection />
       <ServicesSection />
+      <AISolutionsSpotlightSection />
+      <LogisticsOperationalSpotlightSection />
+      <CustomerSuccessStorySection />
       <ProjectWorkSection />
       <IndustriesSection />
       <PartnerJourneySection />
