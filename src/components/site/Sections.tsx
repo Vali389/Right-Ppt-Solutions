@@ -65,8 +65,8 @@ export function ServicesSection({ all = true }: { all?: boolean }) {
                 <div className="service-deliverables">
                   {s.bullets.map((b) => (
                     <span key={b.title}>
-                      <Check size={12} />
-                      <strong>{b.title}:</strong> {b.desc}
+                      <Check size={11} />
+                      {b.title}
                     </span>
                   ))}
                 </div>
