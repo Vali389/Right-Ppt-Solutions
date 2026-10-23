@@ -29,15 +29,15 @@ function Index() {
         title={<>Technology That <span className="hero-brand-accent">Simplifies Business.</span></>}
         description="RightPPT builds, modernizes and connects business applications—helping you automate work, improve visibility and put AI to practical use."
       />
-      <ServicesSection />
-      <ProjectWorkSection />
-      <FeaturedProjectsSection />
       <AboutSection />
       <OrbitSection />
+      <ServicesSection />
+      <ProjectWorkSection />
       <IndustriesSection />
       <PartnerJourneySection />
       <KeyFeaturesSection />
       <WhyChooseUsSection />
+      <FeaturedProjectsSection />
       <Testimonials />
       <CTA />
     </Layout>

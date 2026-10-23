@@ -3,6 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 import technology from '@/assets/technology.jpg';
 import team from '@/assets/team.jpg';
 import marketing from '@/assets/marketing.jpg';
+import servicesHero from '@/assets/services-hero.jpg';
 
 export interface ServiceBullet {
   title: string;
@@ -96,7 +97,7 @@ export const services: ServiceItem[] = [
     description: 'Develop smarter networks with traffic prediction, automated control and threat detection.',
     detail: 'RightPPT helps organizations automate routine work, find information faster, secure network infrastructure, and deliver more personalized experiences through applied AI.',
     knowMoreText: 'Know More — Networking Capabilities',
-    image: technology,
+    image: servicesHero,
     icon: Network,
     tone: 'violet',
     bullets: [

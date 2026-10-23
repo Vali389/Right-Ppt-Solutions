@@ -26,65 +26,65 @@ import team from '@/assets/team.jpg';
 import { services } from './data';
 import { SectionTitle } from './Layout';
 
-export function ServicesSection() {
+export function ServicesSection({ all = true }: { all?: boolean }) {
+  const displayedServices = all ? services : services.slice(0, 4);
   return (
-    <section className="section services-section" id="capabilities">
+    <section className="section services-section" id="services">
       <div className="container">
         <SectionTitle
-          label="TECHNOLOGY THAT SIMPLIFIES BUSINESS"
-          title="Enterprise Solutions Built Around Your Business"
+          label="WHAT WE DO · SERVICES & CAPABILITIES"
+          title="Technology That Simplifies Business"
           description="RightPPT builds, modernizes and connects business applications—helping you automate work, improve visibility and put AI to practical use."
         />
 
-        <div className="main-capabilities-grid">
-          {services.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <article
-                key={s.slug}
-                className={`capability-showcase-card tone-${s.tone} reveal`}
-              >
-                {/* Header Row */}
-                <div className="capability-card-header">
-                  <div className="capability-icon-pill">
-                    <Icon size={24} />
-                  </div>
-                  <div className="capability-meta-wrap">
-                    <span className="capability-tag">{s.label}</span>
-                    <h3 className="capability-title">{s.name}</h3>
-                  </div>
-                </div>
-
-                {/* Subtitle / Promise */}
-                <p className="capability-subtitle">{s.description}</p>
-
-                {/* Bullet Points List */}
-                <ul className="capability-bullets-list">
+        <div className="service-grid">
+          {displayedServices.map((s, i) => (
+            <Link
+              to="/services/$serviceId"
+              params={{ serviceId: s.slug }}
+              className={`service-card reveal tone-${s.tone}`}
+              key={s.slug}
+            >
+              <div className="service-photo">
+                <img
+                  src={s.image}
+                  alt={s.name}
+                  width={1536}
+                  height={1024}
+                  loading="lazy"
+                />
+                <span className="service-icon">
+                  <s.icon size={20} />
+                </span>
+                <span className="service-number">0{i + 1}</span>
+                <h3>{s.name}</h3>
+              </div>
+              <div className="service-body">
+                <span className="service-label">{s.label}</span>
+                <p>{s.description}</p>
+                <div className="service-deliverables">
                   {s.bullets.map((b) => (
-                    <li key={b.title} className="capability-bullet-item">
-                      <span className="bullet-dot" />
-                      <div className="bullet-content">
-                        <strong>{b.title}:</strong> <span>{b.desc}</span>
-                      </div>
-                    </li>
+                    <span key={b.title}>
+                      <Check size={12} />
+                      <strong>{b.title}:</strong> {b.desc}
+                    </span>
                   ))}
-                </ul>
-
-                {/* Card Action Link ("Know More — ...") */}
-                <div className="capability-card-footer">
-                  <Button asChild size="lg" className="capability-knowmore-btn">
-                    <Link
-                      to="/services/$serviceId"
-                      params={{ serviceId: s.slug }}
-                    >
-                      <span>{s.knowMoreText}</span>
-                      <ArrowRight size={16} />
-                    </Link>
-                  </Button>
                 </div>
-              </article>
-            );
-          })}
+                <div className="learn-link">
+                  <span>{s.knowMoreText}</span>
+                  <ArrowRight size={14} className="learn-arrow" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="center-action">
+          <Button asChild variant="outline" size="lg">
+            <Link to="/services">
+              View All Service Capabilities <ArrowUpRight size={18} />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
