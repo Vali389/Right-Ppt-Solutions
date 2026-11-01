@@ -745,26 +745,31 @@ export function getServiceBySlug(rawSlug: string): { service: ServiceItem; deepD
   const resolvedSlug = slugAliases[rawSlug] || rawSlug;
   const index = services.findIndex((s) => s.slug === resolvedSlug);
 
+  const fallbackService = services[0]!;
+  const fallbackDeepDive = serviceDeepDives['software-development']!;
+
   if (index === -1) {
     const numIdx = parseInt(rawSlug, 10);
-    if (!isNaN(numIdx) && services[numIdx]) {
+    const matched = !isNaN(numIdx) ? services[numIdx] : undefined;
+    if (matched) {
       return {
-        service: services[numIdx],
-        deepDive: serviceDeepDives[services[numIdx].slug] || serviceDeepDives['software-development'],
+        service: matched,
+        deepDive: serviceDeepDives[matched.slug] ?? fallbackDeepDive,
         index: numIdx,
       };
     }
     // Default to software-development
     return {
-      service: services[0],
-      deepDive: serviceDeepDives['software-development'],
+      service: fallbackService,
+      deepDive: fallbackDeepDive,
       index: 0,
     };
   }
 
+  const matchedService = services[index] ?? fallbackService;
   return {
-    service: services[index],
-    deepDive: serviceDeepDives[resolvedSlug] || serviceDeepDives['software-development'],
+    service: matchedService,
+    deepDive: serviceDeepDives[resolvedSlug] ?? fallbackDeepDive,
     index,
   };
 }

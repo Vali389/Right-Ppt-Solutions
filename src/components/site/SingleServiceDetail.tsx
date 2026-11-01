@@ -157,7 +157,7 @@ export function SingleServiceDetail({ serviceId }: SingleServiceDetailProps) {
     `Hi Right PPT Solutions, I would like to consult with an architect regarding ${service.name}.`
   );
 
-  const faqs = serviceFaqs[service.slug] || serviceFaqs['software-development'];
+  const faqs = serviceFaqs[service.slug] || serviceFaqs['software-development'] || [];
   const otherServices = services.filter((s) => s.slug !== service.slug);
 
   return (

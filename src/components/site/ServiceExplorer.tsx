@@ -210,10 +210,10 @@ export function ServiceExplorer() {
   const hash = useLocation({ select: (location) => location.hash });
   const index = services.findIndex((_, i) => hash === `service-${i}`);
   const selected = index < 0 ? 0 : index;
-  const service = services[selected];
-  const deepDive = serviceDeepDives[selected] || serviceDeepDives[0];
+  const service = services[selected] ?? services[0];
+  const deepDive = serviceDeepDives[selected] ?? serviceDeepDives[0];
 
-  if (!service) return null;
+  if (!service || !deepDive) return null;
 
   useEffect(() => {
     if (hash && hash.startsWith('#service-')) {
@@ -225,6 +225,7 @@ export function ServiceExplorer() {
         return () => clearTimeout(timer);
       }
     }
+    return undefined;
   }, [hash]);
 
   const whatsappMessage = encodeURIComponent(

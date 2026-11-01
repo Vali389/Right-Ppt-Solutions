@@ -867,7 +867,7 @@ const techCatalog: Record<string, Array<{ name: string; tag: string; role: strin
 
 export function TechEcosystemSection() {
   const [activeTab, setActiveTab] = useState('cloud');
-  const items = techCatalog[activeTab] || techCatalog.cloud;
+  const items = techCatalog[activeTab] || techCatalog['cloud'] || [];
 
   return (
     <section className="section tech-ecosystem-section">

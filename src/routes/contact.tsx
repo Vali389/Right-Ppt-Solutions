@@ -43,11 +43,17 @@ function ContactPage() {
     service: 'Software Development and Modernization',
     message: '',
   });
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  type FormErrors = {
+    name?: string;
+    email?: string;
+    phone?: string;
+    message?: string;
+  };
+  const [errors, setErrors] = useState<FormErrors>({});
   const [submittedDetails, setSubmittedDetails] = useState<typeof formData | null>(null);
 
   const validate = (): boolean => {
-    const errs: { [key: string]: string } = {};
+    const errs: FormErrors = {};
     if (!formData.name.trim() || formData.name.trim().length < 2) {
       errs.name = 'Please enter your name (at least 2 characters).';
     }

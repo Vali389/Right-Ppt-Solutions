@@ -32,7 +32,7 @@ export interface ProjectItem {
   year: string;
   tagline: string;
   description: string;
-  image: string;
+  image?: string;
   tone: 'blue' | 'green' | 'violet' | 'cyan';
   metrics: { value: string; label: string }[];
   techStack: string[];
