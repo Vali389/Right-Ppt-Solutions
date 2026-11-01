@@ -182,8 +182,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
               src={logoImg}
               alt="Right PPT Solutions"
               className="site-logo"
-              width={260}
-              height={84}
+              width={160}
+              height={108}
             />
           </Link>
 
