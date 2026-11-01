@@ -18,7 +18,8 @@ import {
   Users2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logoImg from '@/assets/right-ppt-logo.png';
+import { RightPptLogo } from './RightPptLogo';
+import logoImg from '@/assets/right-ppt-logo.svg';
 import studioHero from '@/assets/studio-hero.jpg';
 import cityHero from '@/assets/city-hero.jpg';
 import ctaTechPlain from '@/assets/cta-tech-plain.jpg';
@@ -178,13 +179,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <header className="site-header">
         <div className="container header-inner">
           <Link to="/" aria-label="Right PPT Solutions home" className="logo-link">
-            <img
-              src={logoImg}
-              alt="Right PPT Solutions"
-              className="site-logo"
-              width={160}
-              height={108}
-            />
+            <RightPptLogo className="site-logo" />
           </Link>
 
           <nav className={menu ? 'navigation navigation-open' : 'navigation'} aria-label="Main navigation">
@@ -329,14 +324,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="container footer-main">
           <div className="footer-brand">
             <Link to="/" aria-label="Right PPT Solutions home" className="footer-logo-wrap">
-              <img
-                src={logoImg}
-                alt="Right PPT Solutions"
-                className="footer-logo-img"
-                loading="lazy"
-                width={260}
-                height={88}
-              />
+              <RightPptLogo className="footer-logo-img" />
             </Link>
             <p className="footer-brand-text">
               The right combination of <strong className="brand-dot-blue">People</strong>,{' '}

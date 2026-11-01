@@ -45,20 +45,18 @@
    RIGHT PPT BRANDING & LOGO PRESENTATION
    ========================================================================== */
 .site-logo,
+.logo-link svg,
 .logo-link img {
   height: 104px !important;
   max-height: 108px !important;
   width: auto !important;
   max-width: 320px !important;
-  object-fit: contain !important;
   display: block !important;
   overflow: visible !important;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  filter: contrast(1.08) saturate(1.06) drop-shadow(0 2px 10px rgba(15, 23, 42, 0.08));
   transition: transform 0.25s ease;
 }
 .site-logo:hover,
+.logo-link svg:hover,
 .logo-link img:hover {
   transform: scale(1.03);
 }
@@ -104,12 +102,12 @@
   box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.12);
 }
 .footer-logo-img,
+.footer-logo-wrap svg,
 .footer-brand img {
   width: 230px !important;
   max-width: 100% !important;
   height: auto !important;
   max-height: 90px !important;
-  object-fit: contain !important;
   display: block !important;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
@@ -128,12 +126,12 @@
     overflow: visible !important;
   }
   .site-logo,
+  .logo-link svg,
   .logo-link img {
     height: 80px !important;
     max-height: 84px !important;
     width: auto !important;
     max-width: 240px !important;
-    object-fit: contain !important;
   }
   .footer-brand .footer-logo-wrap {
     padding: 6px 10px;
