@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from '@tanstack/react-router';
 import {
   ArrowRight,
@@ -20,9 +20,8 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SectionTitle } from './Layout';
-import technology from '@/assets/technology.jpg';
-import team from '@/assets/team.jpg';
-import marketing from '@/assets/marketing.jpg';
+import { ProjectCardGraphic } from './TechGraphics';
+import { HealthcareAICaseStudyModalContent } from './HealthcareAICaseStudy';
 
 export interface ProjectItem {
   id: string;
@@ -45,42 +44,119 @@ export interface ProjectItem {
 
 export const projectsData: ProjectItem[] = [
   {
-    id: 'ai-healthcare',
-    name: 'AI Clinical Intelligence & EHR Interoperability',
-    client: 'AI Case Study – Healthcare Industry',
+    id: 'healthcare-ai-solutions',
+    name: 'Healthcare AI Solutions: Autonomous Clinical Operations & Predictive Care',
+    client: 'Enterprise Healthcare Networks & Hospital Systems',
     category: 'ai',
-    categoryLabel: 'HEALTHCARE & APPLIED AI',
+    categoryLabel: 'HEALTHCARE AI & CLINICAL INTELLIGENCE',
     year: '2026',
-    tagline: 'AI-powered clinical triage, EHR interoperability and automated medical document intelligence.',
+    tagline: 'Autonomous, goal-driven AI systems that learn, adapt, and collaborate—minimizing manual overhead while maximizing impact.',
     description:
-      'Healthcare providers face heavy administrative burdens and fragmented EHR systems. RightPPT built a HIPAA-compliant clinical AI platform enabling document extraction, assisted chart review, and real-time triage assistance while keeping physicians firmly in control.',
-    image: team,
-    tone: 'violet',
+      'Deploy autonomous, goal-driven AI systems that learn, adapt, and collaborate—minimizing manual overhead while maximizing impact across clinical operations, predictive diagnostics, patient engagement, and revenue cycle management.',
+    image: '',
+    tone: 'cyan',
     metrics: [
-      { value: '70%', label: 'Faster Chart Reviews' },
-      { value: '100%', label: 'HIPAA Compliant' },
+      { value: '85%', label: 'Discharge Summary Speedup' },
+      { value: '24/7', label: 'Clinical Triage Availability' },
+      { value: '99.8%', label: 'HIPAA & Cloud Security' },
+      { value: '-40%', label: 'Denial Appeals Overhead' },
     ],
-    techStack: ['Python', 'FastAPI', 'HL7 / FHIR', 'LangChain', 'pgvector', 'AWS HealthLake'],
+    techStack: [
+      'GenAI Clinical Co-Pilot',
+      'Speech-to-EHR Transcription',
+      'Predictive Anomaly Diagnostics',
+      'Enterprise Semantic Search',
+      'Google Cloud Vertex AI',
+      'HIPAA & SOC 2 Boundary',
+    ],
     deliverables: [
-      'Domain-specific clinical NLP models with human verification gates',
-      'Bidirectional FHIR/HL7 EHR data connectors for instant patient record sync',
-      'Automated medical document parser for labs, referrals, and insurance forms',
-      'Role-based clinician access controls with comprehensive audit logging',
+      'AI Care Coordination: GenAI clinical co-pilot for treatment suggestions; smart patient routing by acuity & bed availability.',
+      'Clinical Workflow Automation: Auto-generate discharge summaries; speech-to-EHR transcription and clinical structuring.',
+      'Predictive Diagnostics: Anomaly detection and early condition risk predictions based on longitudinal medical records.',
+      'Personalized Treatment: GenAI mental-health therapy guides and personalized engagement for on-going treatment regimens.',
+      'Virtual Health Assistants: 24×7 multilingual appointment/chat triage Agent with symptom checker and automated medication reminders.',
+      'Operations & Staff Optimization: Bed-occupancy optimization, staff-shift roistering, and AI-agent maintenance-request prioritization.',
+      'Literature Mining & Molecular Simulation: GenAI summarizing thousands of papers, biomarker correlation mining, and clinical-trial simulators.',
+      'Claims & Revenue Cycle Management: GenAI appeal-letter drafting for insurance denials and automated payment variance dashboards.',
+      'Staffing & Retention: AI-agent optimal shift-roster generator and customized learning-path personalization.',
+      'Semantic Insights & Dashboards: Enterprise semantic search across clinical databases with conversational analytics and alerts.',
+      'Google Cloud Certified Architecture: Robust cloud infrastructure with cost optimization, verified enterprise security, and innovative management.',
     ],
     objectives: [
-      'Automate patient intake, document processing and medical record classification.',
-      'Reduce physician documentation burden with assisted clinical summarization.',
-      'Maintain strict HIPAA and data security compliance across all health systems.',
+      'Deploy autonomous, goal-driven clinical AI agents that reduce administrative burden on medical personnel.',
+      'Accelerate clinical documentation through auto-generated discharge summaries and voice EHR structuring.',
+      'Improve patient triage responsiveness with 24/7 multilingual conversational assistants.',
+      'Streamline insurance claims and reduce denial appeal turnaround times.',
+      'Ensure 100% HIPAA and cloud security compliance across all model interactions.',
     ],
     challenges: [
-      'Complex EHR data silos and unstructured physician clinical notes.',
-      'Real-time sub-second query latency required during live patient consultations.',
-      'Strict regulatory adherence with zero tolerance for hallucinations.',
+      'Severe physician burnout caused by hours of manual EHR data entry and documentation overhead.',
+      'Complex patient triage workflows leading to emergency department bottlenecks and bed misallocation.',
+      'Insurance claim denial appeals requiring tedious manual review of medical records.',
+      'Strict regulatory, data privacy, and HIPAA compliance requirements prohibiting public AI models.',
     ],
     outcomes: [
-      '70% reduction in manual physician chart review time.',
-      'Zero data leakage with private, on-premise or sovereign cloud inference.',
-      'Seamless bi-directional synchronization with existing hospital EHR systems.',
+      '85% reduction in discharge summary preparation time, freeing up valuable clinician hours for direct care.',
+      'Immediate 24/7 multilingual triage routing that lowered patient wait times across partner hospital systems.',
+      '40% reduction in claims denial appeal cycles through automated GenAI appeal letter generation.',
+      'High-reliability cloud environment operating under certified Google Cloud security protocols.',
+    ],
+  },
+  {
+    id: 'ai-rebate-processing',
+    name: 'AI Driven Rebate Processing and Business Intelligence',
+    client: 'B2B Fulfillment Services Provider (Food & Distribution)',
+    category: 'ai',
+    categoryLabel: 'INTELLIGENT AUTOMATION & BI',
+    year: '2026',
+    tagline: 'Intelligent document processing, automated eligibility checks, product intelligence and predictive analytics.',
+    description:
+      'RightPPT transformed manual business-to-business rebate operations for a fulfillment services provider supporting food manufacturers, distributors, brokers and restaurant operators. The solution combined intelligent document processing, automated eligibility checks, product intelligence and predictive analytics.',
+    tone: 'blue',
+    metrics: [
+      { value: '10x', label: 'Faster Processing' },
+      { value: '99.5%', label: 'Payout Accuracy' },
+    ],
+    techStack: [
+      'Intelligent Document Processing (IDP)',
+      'OCR & Handwriting NLP',
+      'Automated Rule Engine',
+      'Python / FastAPI',
+      'Predictive Analytics',
+      'SOC 2 & CCPA Security',
+    ],
+    deliverables: [
+      'Intelligent document processing: Digitized submissions and extracted rebate, invoice and purchase details, routing unclear handwriting and low-confidence fields for expert review.',
+      'Automated eligibility validation: Checked qualifying products, quantities, purchase periods and reward calculations; detected duplicate claims and inconsistent information.',
+      'Complete redemption workflows: Supported operators, distributors, sales representatives and brokers, including spreadsheet-only submissions, bulk rebates and premium fulfillment.',
+      'Payment and communication support: Produced approved payout instructions, consolidated distributor payment summaries and service letters explaining partial or rejected claims.',
+      'Invoice product intelligence: Standardized distributor codes and identified complementary and competing products to reveal cross-selling and conversion opportunities.',
+      'Automated analytics: Delivered dashboards, detailed reports, exception tracking and AI-generated summaries across clients, programs and distributors.',
+      'Predictive recommendations: Analyzed historical activity to recommend new rebate structures, identify underperforming programs and compare potential outcomes.',
+      'Connected systems and governance: Integrated the existing submission portal, redemption database and reporting tools, with role-based access, encryption, audit trails and confidential-data redaction designed to support SOC 2 practices and CCPA obligations.',
+      'Operational readiness: Calibrated the solution against historical expert decisions and delivered approval checkpoints, spot-audit controls, training, documentation and ongoing support.',
+    ],
+    objectives: [
+      'Accelerate rebate processing from submission through payment approval.',
+      'Preserve vetting accuracy while handling higher volumes with minimal additional staffing.',
+      'Automate reporting and uncover complementary and competing product purchases.',
+      'Recommend new rebate programs using historical redemption insights.',
+      'Protect confidential information while retaining expert oversight and client data ownership.',
+    ],
+    challenges: [
+      'Paper submissions, handwritten forms, scanned invoices, PDFs and spreadsheets required extensive manual review.',
+      'Different distributor product codes complicated product identification and eligibility checks.',
+      'Purchase dates, quantities, reward tiers and participant rules varied across programs.',
+      'Individual claims, consolidated distributor payments and premium rewards required different workflows.',
+      'Fragmented information slowed reporting, exception handling and audit preparation.',
+    ],
+    outcomes: [
+      'Faster turnaround: Processing moved from lengthy manual queues to streamlined validation and approval, enabling earlier payment readiness.',
+      'Stronger accuracy and payout control: Consistent checks and targeted expert review improved eligibility decisions and reduced duplicate or unsupported payouts.',
+      'Greater processing capacity: Teams handled higher submission volumes while focusing their expertise on exceptions and client service.',
+      'More valuable client insights: Faster reporting and deeper invoice analysis revealed purchasing trends, competitor activity and complementary product opportunities.',
+      'New advisory services: Predictive recommendations expanded the provider’s offering from redemption administration to rebate program optimization.',
+      'Improved transparency and trust: Traceable decisions, clear service letters and controlled data access strengthened audit readiness and client confidence.',
     ],
   },
   {
@@ -93,7 +169,6 @@ export const projectsData: ProjectItem[] = [
     tagline: 'Keep the business knowledge. Upgrade the technology. Replaced a complex IE legacy platform.',
     description:
       'A US property research and lien services provider depended on an Internet Explorer-based application to coordinate research, documents, and operational work. Incomplete source code made the replacement a reconstruction of business knowledge as well as a technology project.',
-    image: technology,
     tone: 'blue',
     metrics: [
       { value: '100%', label: 'Browser Independence' },
@@ -132,7 +207,6 @@ export const projectsData: ProjectItem[] = [
     tagline: 'Unified CRM and Association Management System connecting contacts, billing, and content.',
     description:
       'A unified CRM and Association Management System (AMS) connected contact management, membership administration, digital content and marketing tools within a coordinated operational environment.',
-    image: marketing,
     tone: 'green',
     metrics: [
       { value: '85%', label: 'Admin Workload Saved' },
@@ -174,7 +248,6 @@ export const projectsData: ProjectItem[] = [
     tagline: 'Integrated website for digital content, subscriptions, online learning and engagement.',
     description:
       'Delivered an integrated website for a professional education publisher, bringing digital content, subscriptions, online learning and customer engagement into one connected experience.',
-    image: technology,
     tone: 'violet',
     metrics: [
       { value: '+160%', label: 'Institutional Reach' },
@@ -217,7 +290,6 @@ export const projectsData: ProjectItem[] = [
     tagline: 'Migration of customized on-premises Microsoft Dynamics CRM to Dynamics 365 Cloud.',
     description:
       'Migration of a highly customized, on-premises Microsoft Dynamics CRM environment to Dynamics 365 Cloud, supporting 450+ users, approximately 1 TB of data and 18 integration touchpoints.',
-    image: team,
     tone: 'blue',
     metrics: [
       { value: '450+', label: 'Enterprise Users' },
@@ -260,7 +332,6 @@ export const projectsData: ProjectItem[] = [
     tagline: 'Guided decision support, conference surveys and centralized compliance administration.',
     description:
       'A web application designed to extend an existing mobile ethics resource, combining guided decision support, conference surveys and centralized administration for healthcare compliance professionals.',
-    image: marketing,
     tone: 'cyan',
     metrics: [
       { value: '13 Topics', label: 'Guided Policy Trees' },
@@ -302,7 +373,6 @@ export const projectsData: ProjectItem[] = [
     tagline: 'Azure SQL data transformation, duplicate reconciliation, and migration readiness.',
     description:
       'Prepared membership and operational data for transition from a legacy association platform to a new management system, using Azure SQL to organize, clean and validate records.',
-    image: technology,
     tone: 'green',
     metrics: [
       { value: '99.8%', label: 'Verified Data Accuracy' },
@@ -337,16 +407,28 @@ export const projectsData: ProjectItem[] = [
 ];
 
 export const filterCategories = [
-  { id: 'all', label: 'All Case Studies', count: 7 },
-  { id: 'modernization', label: 'Legacy Modernization', count: 2 },
-  { id: 'crm', label: 'CRM & Membership', count: 2 },
-  { id: 'ai', label: 'Applied AI & Data', count: 2 },
-  { id: 'web', label: 'Web & Publishing', count: 2 },
+  { id: 'all', label: 'All Case Studies' },
+  { id: 'ai', label: 'Applied AI & Data' },
+  { id: 'modernization', label: 'Legacy Modernization' },
+  { id: 'crm', label: 'CRM & Membership' },
+  { id: 'web', label: 'Web & Publishing' },
 ];
 
 export function FeaturedProjectsSection() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const found = projectsData.find((p) => p.id === hash);
+        if (found) {
+          setSelectedProject(found);
+        }
+      }
+    }
+  }, []);
 
   const filteredProjects =
     activeCategory === 'all'
@@ -375,7 +457,6 @@ export function FeaturedProjectsSection() {
                 onClick={() => setActiveCategory(cat.id)}
               >
                 <span>{cat.label}</span>
-                <span className="filter-count-badge">{cat.count}</span>
               </button>
             );
           })}
@@ -398,16 +479,9 @@ export function FeaturedProjectsSection() {
                 }
               }}
             >
-              {/* Thumbnail Image */}
+              {/* Card Graphic */}
               <div className="project-card-image">
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  loading="lazy"
-                  width={640}
-                  height={380}
-                />
-                <div className="project-image-gradient" />
+                <ProjectCardGraphic id={project.id} title={project.name} />
                 <span className="project-category-badge">{project.categoryLabel}</span>
               </div>
 
@@ -420,15 +494,7 @@ export function FeaturedProjectsSection() {
                 <h3 className="project-title">{project.name}</h3>
                 <p className="project-tagline">{project.tagline}</p>
 
-                {/* Metrics */}
-                <div className="project-metrics-row">
-                  {project.metrics.map((m) => (
-                    <div key={m.label} className="project-metric-pill">
-                      <strong className="metric-val">{m.value}</strong>
-                      <span className="metric-lbl">{m.label}</span>
-                    </div>
-                  ))}
-                </div>
+
 
                 {/* Tech Chips */}
                 <div className="project-tech-chips">
@@ -457,6 +523,13 @@ export function FeaturedProjectsSection() {
 
         {/* Bottom Trust & Capability Strip */}
         <div className="portfolio-trust-band reveal">
+          <div className="trust-band-item">
+            <Sparkles size={20} className="trust-icon" />
+            <div>
+              <strong>Applied AI &amp; BI</strong>
+              <span>Intelligent document processing &amp; predictive analytics</span>
+            </div>
+          </div>
           <div className="trust-band-item">
             <CheckCircle2 size={20} className="trust-icon" />
             <div>
@@ -502,7 +575,9 @@ export function FeaturedProjectsSection() {
           aria-modal="true"
         >
           <div
-            className={`project-modal-content tone-${selectedProject.tone}`}
+            className={`project-modal-content tone-${selectedProject.tone} ${
+              selectedProject.id === 'healthcare-ai-solutions' ? 'max-w-5xl !p-2 sm:!p-4 bg-white' : ''
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -514,97 +589,98 @@ export function FeaturedProjectsSection() {
               <X size={20} />
             </button>
 
-            <div className="modal-header">
-              <span className="modal-cat-tag">{selectedProject.categoryLabel}</span>
-              <h2>{selectedProject.name}</h2>
-              <p className="modal-client">{selectedProject.client} · {selectedProject.year}</p>
-            </div>
+            {selectedProject.id === 'healthcare-ai-solutions' ? (
+              <HealthcareAICaseStudyModalContent onClose={() => setSelectedProject(null)} />
+            ) : (
+              <>
+                <div className="modal-header">
+                  <span className="modal-cat-tag">{selectedProject.categoryLabel}</span>
+                  <h2>{selectedProject.name}</h2>
+                  <p className="modal-client">{selectedProject.client} · {selectedProject.year}</p>
+                </div>
 
-            <div className="modal-body">
-              <p className="modal-desc">{selectedProject.description}</p>
+                <div className="w-full h-48 sm:h-64 rounded-xl overflow-hidden mb-6 border border-slate-700/60 shadow-lg">
+                  <ProjectCardGraphic id={selectedProject.id} title={selectedProject.name} />
+                </div>
 
-              <div className="modal-metrics-box">
-                {selectedProject.metrics.map((m) => (
-                  <div className="modal-metric-col" key={m.label}>
-                    <strong>{m.value}</strong>
-                    <span>{m.label}</span>
+                <div className="modal-body">
+                  <p className="modal-desc">{selectedProject.description}</p>
+
+                  {selectedProject.objectives && selectedProject.objectives.length > 0 && (
+                    <div className="modal-section-block">
+                      <h4>BUSINESS OBJECTIVES</h4>
+                      <ul className="modal-deliverables-list">
+                        {selectedProject.objectives.map((obj) => (
+                          <li key={obj}>
+                            <Target size={16} className="text-blue-500 shrink-0" />
+                            <span>{obj}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {selectedProject.challenges && selectedProject.challenges.length > 0 && (
+                    <div className="modal-section-block">
+                      <h4>PROJECT CHALLENGES</h4>
+                      <ul className="modal-deliverables-list">
+                        {selectedProject.challenges.map((ch) => (
+                          <li key={ch}>
+                            <AlertTriangle size={16} className="text-amber-500 shrink-0" />
+                            <span>{ch}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="modal-section-block">
+                    <h4>PROJECT DELIVERABLES</h4>
+                    <ul className="modal-deliverables-list">
+                      {selectedProject.deliverables.map((d) => (
+                        <li key={d}>
+                          <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                ))}
-              </div>
 
-              {selectedProject.objectives && selectedProject.objectives.length > 0 && (
-                <div className="modal-section-block">
-                  <h4>BUSINESS OBJECTIVES</h4>
-                  <ul className="modal-deliverables-list">
-                    {selectedProject.objectives.map((obj) => (
-                      <li key={obj}>
-                        <Target size={16} className="text-blue-500 shrink-0" />
-                        <span>{obj}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {selectedProject.outcomes && selectedProject.outcomes.length > 0 && (
+                    <div className="modal-section-block">
+                      <h4>BUSINESS OUTCOMES & VALUE</h4>
+                      <ul className="modal-deliverables-list">
+                        {selectedProject.outcomes.map((out) => (
+                          <li key={out}>
+                            <Award size={16} className="text-purple-500 shrink-0" />
+                            <span>{out}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="modal-section-block">
+                    <h4>TECHNOLOGY STACK</h4>
+                    <div className="modal-tech-pills">
+                      {selectedProject.techStack.map((tech) => (
+                        <span className="modal-pill" key={tech}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              )}
 
-              {selectedProject.challenges && selectedProject.challenges.length > 0 && (
-                <div className="modal-section-block">
-                  <h4>PROJECT CHALLENGES</h4>
-                  <ul className="modal-deliverables-list">
-                    {selectedProject.challenges.map((ch) => (
-                      <li key={ch}>
-                        <AlertTriangle size={16} className="text-amber-500 shrink-0" />
-                        <span>{ch}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="modal-footer">
+                  <Button asChild size="lg" className="modal-discuss-btn">
+                    <Link to="/contact" onClick={() => setSelectedProject(null)}>
+                      Discuss This Solution with RightPPT <ArrowRight size={16} />
+                    </Link>
+                  </Button>
                 </div>
-              )}
-
-              <div className="modal-section-block">
-                <h4>PROJECT DELIVERABLES</h4>
-                <ul className="modal-deliverables-list">
-                  {selectedProject.deliverables.map((d) => (
-                    <li key={d}>
-                      <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {selectedProject.outcomes && selectedProject.outcomes.length > 0 && (
-                <div className="modal-section-block">
-                  <h4>BUSINESS OUTCOMES & VALUE</h4>
-                  <ul className="modal-deliverables-list">
-                    {selectedProject.outcomes.map((out) => (
-                      <li key={out}>
-                        <Award size={16} className="text-purple-500 shrink-0" />
-                        <span>{out}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="modal-section-block">
-                <h4>TECHNOLOGY STACK</h4>
-                <div className="modal-tech-pills">
-                  {selectedProject.techStack.map((tech) => (
-                    <span className="modal-pill" key={tech}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="modal-footer">
-              <Button asChild size="lg" className="modal-discuss-btn">
-                <Link to="/contact" onClick={() => setSelectedProject(null)}>
-                  Discuss This Solution with RightPPT <ArrowRight size={16} />
-                </Link>
-              </Button>
-            </div>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -1,15 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Layout, Hero, CTA } from '@/components/site/Layout';
-import { ServicesSection, ProjectWorkSection, AboutSection, Testimonials } from '@/components/site/Sections';
+import { ServicesSection, AboutSection, Testimonials } from '@/components/site/Sections';
 import {
   OrbitSection,
   IndustriesSection,
   PartnerJourneySection,
 } from '@/components/site/HomeExtras';
 import {
-  AISolutionsSpotlightSection,
-  LogisticsOperationalSpotlightSection,
-  CustomerSuccessStorySection,
   IntegrationEcosystemTicker,
 } from '@/components/site/ShowcaseSections';
 import { FeaturedProjectsSection } from '@/components/site/FeaturedProjectsSection';
@@ -37,10 +34,6 @@ function Index() {
       <AboutSection />
       <OrbitSection />
       <ServicesSection />
-      <AISolutionsSpotlightSection />
-      <LogisticsOperationalSpotlightSection />
-      <CustomerSuccessStorySection />
-      <ProjectWorkSection />
       <IndustriesSection />
       <PartnerJourneySection />
       <FeaturedProjectsSection />

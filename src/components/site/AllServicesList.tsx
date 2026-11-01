@@ -24,7 +24,7 @@ export function AllServicesList() {
             return (
               <article
                 key={service.slug}
-                id={`service-${idx}`}
+                id={service.slug}
                 className={`all-service-card tone-${service.tone} reveal`}
               >
                 {/* Top glow accent */}
@@ -34,7 +34,6 @@ export function AllServicesList() {
                   {/* LEFT COLUMN: Service Information & Deliverables */}
                   <div className="all-service-copy">
                     <div className="service-meta-top">
-                      <span className="service-order-badge">0{idx + 1}</span>
                       <span className="service-category-tag">{service.label}</span>
                     </div>
 

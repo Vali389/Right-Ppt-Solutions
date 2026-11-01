@@ -44,7 +44,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SectionTitle } from './Layout';
-import technology from '@/assets/technology.jpg';
+import softDevPlain from '@/assets/soft-dev-plain.jpg';
 
 /* =========================================================================
    1. ORBIT SECTION (Reference Image 1: The PPT Advantage / Rotating Orbit)
@@ -597,9 +597,9 @@ const enterprisePillars = [
   {
     num: '01',
     name: 'Certified Senior Experts',
-    badge: 'TOP 3% TALENT',
-    stat: '8+ Yrs',
-    statSub: 'Avg Experience',
+    badge: 'SENIOR ENGINEERING',
+    stat: 'Senior Tier',
+    statSub: 'Verified Experts',
     icon: Award,
     tone: 'blue',
     tagline: 'Vetted, high-calibre engineers with battle-tested enterprise track records.',
@@ -610,14 +610,14 @@ const enterprisePillars = [
       'Strictly senior practitioners — no junior outsourcing tiers',
       'Domain expertise across fintech, healthcare, SaaS & enterprise',
     ],
-    highlight: 'Rigorous 4-stage technical vetting',
+    highlight: 'Rigorous technical vetting & code standards',
   },
   {
     num: '02',
     name: 'Cloud & AI-First Engineering',
     badge: 'FUTURE-PROOF TECH',
-    stat: '99.99%',
-    statSub: 'Cloud SLA Reliability',
+    stat: 'Enterprise SLA',
+    statSub: 'Cloud Resilience',
     icon: Sparkles,
     tone: 'green',
     tagline: 'Architectures engineered for elastic scalability and generative AI readiness.',
@@ -632,16 +632,16 @@ const enterprisePillars = [
   },
   {
     num: '03',
-    name: '24/7 High-Velocity Delivery',
+    name: 'Continuous High-Velocity Delivery',
     badge: 'GLOBAL ADVANTAGE',
-    stat: '24×7',
-    statSub: 'Continuous Sprints',
+    stat: 'Active Sprints',
+    statSub: 'Continuous Delivery',
     icon: Globe,
     tone: 'violet',
     tagline: 'Continuous sprint progression without timezone bottlenecks.',
     copy: 'Onshore strategic advisory paired with world-class engineering squads working in complete sync to accelerate roadmaps, beat deadlines, and maintain continuous delivery.',
     capabilities: [
-      '48-hour rapid squad mobilization from agreement',
+      'Rapid squad mobilization from agreement',
       'Daily standup participation & direct Jira/Slack visibility',
       'Bi-weekly production demo releases with milestone signoffs',
       'Clear sprint retrospectives & transparent velocity tracking',
@@ -652,8 +652,8 @@ const enterprisePillars = [
     num: '04',
     name: '100% IP & Source Sovereignty',
     badge: 'TRANSPARENT & OPEN',
-    stat: '100%',
-    statSub: 'Client Owned From Day 1',
+    stat: 'Client Sovereignty',
+    statSub: 'Full IP & Rights',
     icon: ShieldCheck,
     tone: 'cyan',
     tagline: 'Zero proprietary lock-in. Full legal sovereignty over all your assets.',
@@ -669,10 +669,10 @@ const enterprisePillars = [
 ];
 
 const enterpriseMetrics = [
-  { value: '48h', label: 'Squad Deployment', desc: 'From kickoff to active sprint commits', icon: Rocket },
-  { value: '99.8%', label: 'Sprint Reliability', desc: 'Predictable milestone velocity', icon: CheckCircle2 },
-  { value: '100%', label: 'IP & Code Rights', desc: 'Full legal ownership on Day 1', icon: Lock },
-  { value: 'Zero', label: 'Vendor Lock-in', desc: 'Open, auditable standard stacks', icon: Shield },
+  { value: 'Direct Squad', label: 'Rapid Deployment', desc: 'From kickoff to active sprint commits', icon: Rocket },
+  { value: 'Milestones', label: 'Sprint Reliability', desc: 'Predictable cadence and demo releases', icon: CheckCircle2 },
+  { value: 'Complete IP', label: 'Code Sovereignty', desc: 'Full legal ownership on Day 1', icon: Lock },
+  { value: 'Open Stack', label: 'Zero Lock-in', desc: 'Open, auditable standard frameworks', icon: Shield },
 ];
 
 export function EnterpriseValuesSection() {
@@ -1138,7 +1138,7 @@ export function ProcessSection() {
         <div className="approach-layout">
           <div className="approach-photo reveal">
             <img
-              src={technology}
+              src={softDevPlain}
               alt="Digital products and technology at a professional workstation"
               width={1536}
               height={1024}

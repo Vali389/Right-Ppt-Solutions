@@ -1,11 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from '@tanstack/react-router';
-import { ArrowRight, ArrowUpRight, ArrowUp, Menu, X, Phone, Mail, MapPin, MessageSquare } from 'lucide-react';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ArrowUp,
+  Menu,
+  X,
+  Phone,
+  Mail,
+  MapPin,
+  ChevronDown,
+  Layers,
+  Network,
+  Truck,
+  Sparkles,
+  Scale,
+  Users2,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logoImg from '@/assets/right-ppt-logo.png';
-import studio from '@/assets/studio-hero.jpg';
+import studioHero from '@/assets/studio-hero.jpg';
 import cityHero from '@/assets/city-hero.jpg';
-import { ChatAssistant } from './ChatAssistant';
+import ctaTechPlain from '@/assets/cta-tech-plain.jpg';
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -55,12 +71,72 @@ function WhatsAppFloat() {
 const nav = [
   { to: '/' as const, name: 'Home' },
   { to: '/about' as const, name: 'About Us' },
-  { to: '/services' as const, name: 'Services' },
+  { to: '/services' as const, name: 'Services', hasDropdown: true },
   { to: '/projects' as const, name: 'Projects' },
   { to: '/contact' as const, name: 'Contact Us' },
 ];
-export function Layout({children}:{children:React.ReactNode}){
- const [menu,setMenu]=useState(false);
+
+const servicesDropdownItems = [
+  {
+    to: '/services#software-development',
+    name: 'Software Development & Modernization',
+    desc: 'Legacy platform migration & bespoke cloud applications',
+    icon: Layers,
+    tone: 'blue',
+  },
+  {
+    to: '/services#ai-solutions',
+    name: 'AI-Enabled Network Security & Infrastructure',
+    desc: 'Deep packet telemetry, anomaly detection & SDN intelligence',
+    icon: Network,
+    tone: 'cyan',
+  },
+  {
+    to: '/services#logistics-solutions',
+    name: 'Logistics, Supply Chain & E-commerce',
+    desc: 'Carrier integration, real-time dispatch & margin analytics',
+    icon: Truck,
+    tone: 'green',
+  },
+  {
+    to: '/services#ai-everyday-business',
+    name: 'AI Solutions for Everyday Business',
+    desc: 'Intelligent search, document automation & content workflows',
+    icon: Sparkles,
+    tone: 'blue',
+  },
+  {
+    to: '/services#ai-legal-compliance',
+    name: 'AI for Legal & Compliance Operations',
+    desc: 'Assisted contract review, clause library & obligation tracking',
+    icon: Scale,
+    tone: 'violet',
+  },
+  {
+    to: '/services#nonprofits-and-associations',
+    name: 'Nonprofits & Professional Associations',
+    desc: 'Membership, dues, renewals, publishing & RyteAI assistants',
+    icon: Users2,
+    tone: 'green',
+  },
+];
+
+export function Layout({ children }: { children: React.ReactNode }) {
+  const [menu, setMenu] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   useEffect(() => {
     const revealVisibleElements = () => {
       document.querySelectorAll('.reveal').forEach((el) => {
@@ -96,14 +172,314 @@ export function Layout({children}:{children:React.ReactNode}){
       window.removeEventListener('scroll', revealVisibleElements);
     };
   }, [children]);
- return <><header className="site-header"><div className="container header-inner"><Link to="/" aria-label="Right PPT Solutions home" className="logo-link"><img src={logoImg} alt="Right PPT Solutions" className="site-logo" width={260} height={92}/></Link><nav className={menu?'navigation navigation-open':'navigation'} aria-label="Main navigation">{nav.map(n=><Link key={n.to} to={n.to} onClick={()=>setMenu(false)} activeProps={{className:'nav-active'}} activeOptions={{exact:n.to==='/'}}>{n.name}</Link>)}</nav><Button asChild className="header-cta"><Link to="/contact">Let’s Talk <ArrowUpRight/></Link></Button><Button variant="ghost" size="icon" className="mobile-menu" aria-label="Toggle navigation" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</Button></div></header><main>{children}</main><footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><Link to="/" aria-label="Right PPT Solutions home" className="footer-logo-wrap"><img src={logoImg} alt="Right PPT Solutions" className="footer-logo-img" loading="lazy" width={260} height={88}/></Link><p className="footer-brand-text">The right combination of <strong className="brand-dot-blue">People</strong>, <strong className="brand-dot-green">Process</strong>, and <strong className="brand-dot-violet">Technology</strong>.</p><div className="footer-brand-chips"><span className="footer-chip chip-blue"><span className="chip-dot dot-blue"/> People</span><span className="footer-chip chip-green"><span className="chip-dot dot-green"/> Process</span><span className="footer-chip chip-violet"><span className="chip-dot dot-violet"/> Technology</span></div><a href="https://wa.me/917386257784" target="_blank" rel="noreferrer" className="footer-whatsapp-btn"><Phone size={15}/> <span>Chat on WhatsApp</span> <ArrowUpRight size={15}/></a></div><div className="footer-nav-col"><h3>Explore</h3><span className="footer-heading-bar bar-blue"/><div className="footer-links-list">{nav.map(n=><Link to={n.to} key={n.to} className="footer-item-link">{n.name}</Link>)}</div></div><div className="footer-nav-col"><h3>Our Expertise</h3><span className="footer-heading-bar bar-green"/><div className="footer-links-list"><Link to="/services/$serviceId" params={{ serviceId: 'software-development' }} className="footer-item-link">Software &amp; Modernization</Link><Link to="/services/$serviceId" params={{ serviceId: 'logistics-solutions' }} className="footer-item-link">Logistics &amp; E-commerce</Link><Link to="/services/$serviceId" params={{ serviceId: 'ai-solutions' }} className="footer-item-link">AI &amp; Network Security</Link><Link to="/services/$serviceId" params={{ serviceId: 'nonprofits-and-associations' }} className="footer-item-link">Nonprofits &amp; Associations</Link><Link to="/projects" className="footer-item-link">Explore Case Studies</Link></div></div><div className="footer-contact"><h3>Get In Touch</h3><span className="footer-heading-bar bar-violet"/><a href="tel:+917386257784" className="footer-contact-item"><div className="contact-icon-bubble blue"><Phone size={16}/></div><div><small>Direct Line</small><strong>+91 73862 57784</strong></div></a><div className="footer-contact-item"><div className="contact-icon-bubble green"><MapPin size={16}/></div><div><small>Corporate Headquarters</small><span>Innov8 Pranava Business Park- 7th Floor KONDAPUR, KOTHAGUDA, Telangana- 500084</span></div></div><div className="footer-hours-pill"><span className="status-dot-pulse"/> Daily · 9:00 am – 5:00 pm IST</div></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} Right PPT Solutions. All rights reserved.</span><span className="footer-tagline-pillars"><span className="dot dot-blue"/> People <span className="dot dot-green"/> Process <span className="dot dot-violet"/> Technology</span></div></footer><ScrollToTop /><WhatsAppFloat /></>;
+
+  return (
+    <>
+      <header className="site-header">
+        <div className="container header-inner">
+          <Link to="/" aria-label="Right PPT Solutions home" className="logo-link">
+            <img
+              src={logoImg}
+              alt="Right PPT Solutions"
+              className="site-logo"
+              width={260}
+              height={84}
+            />
+          </Link>
+
+          <nav className={menu ? 'navigation navigation-open' : 'navigation'} aria-label="Main navigation">
+            {nav.map((n) => {
+              if (n.hasDropdown) {
+                return (
+                  <div
+                    key="services-dropdown-wrap"
+                    className="nav-dropdown-wrap"
+                    ref={dropdownRef}
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                  >
+                    <Link
+                      to="/services"
+                      onClick={() => {
+                        setDropdownOpen(false);
+                        setMenu(false);
+                      }}
+                      activeProps={{ className: 'nav-active' }}
+                      className="nav-link-with-icon"
+                    >
+                      <span>Services</span>
+                      <ChevronDown
+                        size={14}
+                        className={`dropdown-chevron ${dropdownOpen ? 'is-rotated' : ''}`}
+                      />
+                    </Link>
+
+                    {/* Services Dropdown Panel for Desktop */}
+                    <div className={`services-dropdown-panel ${dropdownOpen ? 'is-open' : ''}`}>
+                      <div className="services-dropdown-inner">
+                        <div className="services-dropdown-header">
+                          <span className="dropdown-eyebrow">SERVICES &amp; CAPABILITIES</span>
+                          <span className="dropdown-count">6 Core Areas</span>
+                        </div>
+                        <div className="services-dropdown-grid">
+                          {servicesDropdownItems.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                              <Link
+                                key={item.to}
+                                to={item.to}
+                                onClick={() => {
+                                  setDropdownOpen(false);
+                                  setMenu(false);
+                                }}
+                                className="services-dropdown-item"
+                              >
+                                <div className={`dropdown-item-icon tone-${item.tone}`}>
+                                  <Icon size={12} />
+                                </div>
+                                <span className="dropdown-item-title">{item.name}</span>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                        <div className="services-dropdown-footer">
+                          <Link
+                            to="/services"
+                            onClick={() => {
+                              setDropdownOpen(false);
+                              setMenu(false);
+                            }}
+                            className="dropdown-all-services-link"
+                          >
+                            <span>Explore All Services &amp; Deep-Dives</span>
+                            <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Mobile Services Accordion */}
+                    {menu && (
+                      <div className="mobile-services-accordion">
+                        <button
+                          type="button"
+                          className="mobile-services-toggle"
+                          onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                        >
+                          <span>Explore Specific Services</span>
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`}
+                          />
+                        </button>
+                        {mobileServicesOpen && (
+                          <div className="mobile-services-list">
+                            {servicesDropdownItems.map((item) => (
+                              <Link
+                                key={item.to}
+                                to={item.to}
+                                onClick={() => setMenu(false)}
+                                className="mobile-service-subitem"
+                              >
+                                • {item.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  onClick={() => {
+                    setMenu(false);
+                  }}
+                  activeProps={{ className: 'nav-active' }}
+                  activeOptions={{ exact: n.to === '/' }}
+                >
+                  {n.name}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <Button asChild className="header-cta">
+            <Link to="/contact">
+              Let’s Talk <ArrowUpRight />
+            </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="mobile-menu"
+            aria-label="Toggle navigation"
+            onClick={() => setMenu(!menu)}
+          >
+            {menu ? <X /> : <Menu />}
+          </Button>
+        </div>
+      </header>
+      <main>{children}</main>
+      <footer className="site-footer">
+        <div className="container footer-main">
+          <div className="footer-brand">
+            <Link to="/" aria-label="Right PPT Solutions home" className="footer-logo-wrap">
+              <img
+                src={logoImg}
+                alt="Right PPT Solutions"
+                className="footer-logo-img"
+                loading="lazy"
+                width={260}
+                height={88}
+              />
+            </Link>
+            <p className="footer-brand-text">
+              The right combination of <strong className="brand-dot-blue">People</strong>,{' '}
+              <strong className="brand-dot-green">Process</strong>, and{' '}
+              <strong className="brand-dot-violet">Technology</strong>.
+            </p>
+            <div className="footer-brand-chips">
+              <span className="footer-chip chip-blue">
+                <span className="chip-dot dot-blue" /> People
+              </span>
+              <span className="footer-chip chip-green">
+                <span className="chip-dot dot-green" /> Process
+              </span>
+              <span className="footer-chip chip-violet">
+                <span className="chip-dot dot-violet" /> Technology
+              </span>
+            </div>
+            <a
+              href="https://wa.me/917386257784"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-whatsapp-btn"
+            >
+              <Phone size={15} /> <span>Chat on WhatsApp</span> <ArrowUpRight size={15} />
+            </a>
+          </div>
+          <div className="footer-nav-col">
+            <h3>Explore</h3>
+            <span className="footer-heading-bar bar-blue" />
+            <div className="footer-links-list">
+              {nav.map((n) => (
+                <Link to={n.to} key={n.to} className="footer-item-link">
+                  {n.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="footer-nav-col">
+            <h3>Our Expertise</h3>
+            <span className="footer-heading-bar bar-green" />
+            <div className="footer-links-list">
+              <Link
+                to="/services/$serviceId"
+                params={{ serviceId: 'software-development' }}
+                className="footer-item-link"
+              >
+                Software &amp; Modernization
+              </Link>
+              <Link
+                to="/services/$serviceId"
+                params={{ serviceId: 'logistics-solutions' }}
+                className="footer-item-link"
+              >
+                Logistics &amp; E-commerce
+              </Link>
+              <Link
+                to="/services/$serviceId"
+                params={{ serviceId: 'ai-solutions' }}
+                className="footer-item-link"
+              >
+                AI &amp; Network Security
+              </Link>
+              <Link
+                to="/services/$serviceId"
+                params={{ serviceId: 'ai-everyday-business' }}
+                className="footer-item-link"
+              >
+                Everyday Business AI
+              </Link>
+              <Link
+                to="/services/$serviceId"
+                params={{ serviceId: 'ai-legal-compliance' }}
+                className="footer-item-link"
+              >
+                Legal &amp; Compliance AI
+              </Link>
+              <Link
+                to="/services/$serviceId"
+                params={{ serviceId: 'nonprofits-and-associations' }}
+                className="footer-item-link"
+              >
+                Nonprofits &amp; Associations
+              </Link>
+              <Link to="/projects" className="footer-item-link">
+                Explore Case Studies
+              </Link>
+            </div>
+          </div>
+          <div className="footer-contact">
+            <h3>Get In Touch</h3>
+            <span className="footer-heading-bar bar-violet" />
+            <a href="tel:+917386257784" className="footer-contact-item">
+              <div className="contact-icon-bubble blue">
+                <Phone size={16} />
+              </div>
+              <div>
+                <small>Direct Line</small>
+                <strong>+91 73862 57784</strong>
+              </div>
+            </a>
+            <a href="mailto:info@rightppt.com" className="footer-contact-item">
+              <div className="contact-icon-bubble violet">
+                <Mail size={16} />
+              </div>
+              <div>
+                <small>Email &amp; Document Downloads</small>
+                <strong>info@rightppt.com</strong>
+              </div>
+            </a>
+            <div className="footer-contact-item">
+              <div className="contact-icon-bubble green">
+                <MapPin size={16} />
+              </div>
+              <div>
+                <small>Hyderabad Office</small>
+                <span>Innov8 Pranava Business Park- 7th Floor KONDAPUR, KOTHAGUDA, Telangana- 500084</span>
+              </div>
+            </div>
+            <div className="footer-hours-pill">
+              <span className="status-dot-pulse" /> Daily · 9:00 am – 5:00 pm IST
+            </div>
+          </div>
+        </div>
+        <div className="container footer-bottom">
+          <span>© {new Date().getFullYear()} Right PPT Solutions. All rights reserved.</span>
+          <span className="footer-tagline-pillars">
+            <span className="dot dot-blue" /> People <span className="dot dot-green" /> Process{' '}
+            <span className="dot dot-violet" /> Technology
+          </span>
+        </div>
+      </footer>
+      <ScrollToTop />
+      <WhatsAppFloat />
+    </>
+  );
 }
+
 export function Hero({
   eyebrow,
   title,
   description,
   home = false,
-  image = studio,
+  image,
   actions,
 }: {
   eyebrow: string;
@@ -117,8 +493,8 @@ export function Hero({
     <section className={home ? 'hero home-hero' : 'hero inner-hero'}>
       <img
         className="hero-image"
-        src={image}
-        alt="Modern business and technology environment"
+        src={image || studioHero}
+        alt="Modern business technology and engineering environment"
         width={1920}
         height={1024}
       />
@@ -163,7 +539,7 @@ export function Hero({
         {home && (
           <div className="hero-trust-badges reveal">
             <span className="hero-trust-badge">
-              <span className="dot dot-blue" /> 120+ Completed Deployments
+              <span className="dot dot-blue" /> Enterprise Grade Architecture
             </span>
             <span className="hero-trust-badge">
               <span className="dot dot-green" /> 99.99% Cloud SLA Guarantee
@@ -177,38 +553,60 @@ export function Hero({
     </section>
   );
 }
-export function SectionTitle({label,title,description}:{label:string,title:string,description?:string}){return <div className="section-heading reveal"><span className="eyebrow">{label}</span><h2>{title}</h2>{description&&<p>{description}</p>}</div>}
+
+export function SectionTitle({
+  label,
+  title,
+  description,
+}: {
+  label: string;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div className="section-heading reveal">
+      <span className="eyebrow">{label}</span>
+      <h2>{title}</h2>
+      {description && <p>{description}</p>}
+    </div>
+  );
+}
+
 export function CTA() {
   return (
-    <section className="cta-band">
+    <section className="cta-band relative overflow-hidden text-white py-24 sm:py-28">
       <img
-        src={cityHero}
-        alt="Modern business enterprise towers and cityscape"
-        className="cta-bg-image"
+        src={ctaTechPlain}
+        alt="RightPPT modern enterprise technology command center"
+        className="cta-bg-image absolute inset-0 w-full h-full object-cover z-0"
         width={1920}
         height={1080}
         loading="lazy"
       />
-      <div className="cta-overlay" />
-      <div className="container cta-container reveal">
-        <span className="cta-eyebrow">LET’S DISCUSS YOUR BUSINESS NEEDS</span>
-        <h2 className="cta-title">Technology That Simplifies Business.</h2>
-        <p className="cta-lead">
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-slate-950/70 via-slate-950/80 to-slate-950/90" />
+      <div className="container relative z-20 mx-auto px-4 text-center max-w-3xl flex flex-col items-center">
+        <span className="inline-block text-xs font-bold tracking-widest uppercase text-cyan-400 bg-cyan-950/60 border border-cyan-500/40 px-4 py-1.5 rounded-full mb-5 shadow-sm">
+          LET’S DISCUSS YOUR BUSINESS NEEDS
+        </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4 drop-shadow-md">
+          Technology That Simplifies Business.
+        </h2>
+        <p className="text-base sm:text-lg text-slate-200 leading-relaxed mb-8 max-w-2xl font-medium drop-shadow-sm">
           Build a new application, improve an existing system or explore practical AI solutions.
         </p>
-        <div className="cta-actions">
-          <Button asChild size="lg" className="cta-primary-btn">
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-3 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all">
             <Link to="/contact">
-              Talk to RightPPT <ArrowUpRight size={18} />
+              Talk to RightPPT <ArrowUpRight size={18} className="ml-1" />
             </Link>
           </Button>
           <a
             href="https://wa.me/917386257784"
             target="_blank"
             rel="noreferrer"
-            className="cta-whatsapp-btn"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white border border-slate-700/80 hover:border-slate-600 font-semibold text-sm shadow-md transition-all"
           >
-            <Phone size={16} /> Quick WhatsApp Chat
+            <Phone size={16} className="text-emerald-400" /> Quick WhatsApp Chat
           </a>
         </div>
       </div>

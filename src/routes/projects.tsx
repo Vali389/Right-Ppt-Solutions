@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import {
   ArrowRight,
@@ -15,8 +15,10 @@ import {
 import { Layout, Hero, CTA } from '@/components/site/Layout';
 import { Button } from '@/components/ui/button';
 import { meta } from '@/components/site/data';
-import { projectsData, filterCategories, ProjectItem } from '@/components/site/FeaturedProjectsSection';
 import projectsHero from '@/assets/projects-hero.jpg';
+import { projectsData, filterCategories, ProjectItem } from '@/components/site/FeaturedProjectsSection';
+import { ProjectCardGraphic } from '@/components/site/TechGraphics';
+import { HealthcareAICaseStudyModalContent } from '@/components/site/HealthcareAICaseStudy';
 
 export const Route = createFileRoute('/projects')({
   head: () =>
@@ -31,6 +33,18 @@ function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const found = projectsData.find((p) => p.id === hash);
+        if (found) {
+          setSelectedProject(found);
+        }
+      }
+    }
+  }, []);
+
   const filteredProjects =
     activeCategory === 'all'
       ? projectsData
@@ -39,24 +53,20 @@ function ProjectsPage() {
   return (
     <Layout>
       <Hero
+        image={projectsHero}
         eyebrow="PORTFOLIO & CASE STUDIES"
         title={<>Explore Our <span className="hero-brand-accent">Project Work.</span></>}
         description="Legacy Modernization, CRM and Membership, Digital Publishing and Learning, and Cloud CRM Migration."
-        image={projectsHero}
       />
 
       <section className="section projects-page-main">
         <div className="container">
-          {/* Header Bar with Count */}
+          {/* Header Bar */}
           <div className="projects-page-header reveal">
             <div>
               <span className="eyebrow">— REAL-WORLD DELIVERABLES —</span>
               <h2>Proven Deliverables &amp; <span className="hero-brand-accent">Measurable Business Impact</span></h2>
               <p>Explore detailed technical architectures, business challenges, and measurable project outcomes.</p>
-            </div>
-            <div className="projects-stat-badge">
-              <strong>7</strong>
-              <span>Verified Case Studies</span>
             </div>
           </div>
 
@@ -73,7 +83,6 @@ function ProjectsPage() {
                   onClick={() => setActiveCategory(cat.id)}
                 >
                   <span>{cat.label}</span>
-                  <span className="filter-count-badge">{cat.count}</span>
                 </button>
               );
             })}
@@ -96,16 +105,9 @@ function ProjectsPage() {
                   }
                 }}
               >
-                {/* Visual Thumbnail */}
+                {/* Graphic Schematic */}
                 <div className="project-card-image">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    width={640}
-                    height={380}
-                  />
-                  <div className="project-image-gradient" />
+                  <ProjectCardGraphic id={p.id} title={p.name} />
                   <span className="project-category-badge">{p.categoryLabel}</span>
                 </div>
 
@@ -118,15 +120,7 @@ function ProjectsPage() {
                   <h3 className="project-title">{p.name}</h3>
                   <p className="project-tagline">{p.tagline}</p>
 
-                  {/* Highlight Metrics Strip */}
-                  <div className="project-metrics-row">
-                    {p.metrics.map((m) => (
-                      <div key={m.label} className="project-metric-pill">
-                        <strong className="metric-val">{m.value}</strong>
-                        <span className="metric-lbl">{m.label}</span>
-                      </div>
-                    ))}
-                  </div>
+
 
                   {/* Tech Stack Chips */}
                   <div className="project-tech-chips">
@@ -200,7 +194,9 @@ function ProjectsPage() {
           onClick={() => setSelectedProject(null)}
         >
           <div
-            className={`project-modal-content tone-${selectedProject.tone}`}
+            className={`project-modal-content tone-${selectedProject.tone} ${
+              selectedProject.id === 'healthcare-ai-solutions' ? 'max-w-5xl !p-2 sm:!p-4 bg-white' : ''
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -211,95 +207,96 @@ function ProjectsPage() {
               <X size={20} />
             </button>
 
-            <div className="modal-header">
-              <span className="modal-cat-tag">{selectedProject.categoryLabel} · {selectedProject.year}</span>
-              <h2 id="modal-title">{selectedProject.name}</h2>
-              <p className="modal-client">{selectedProject.client}</p>
-            </div>
+            {selectedProject.id === 'healthcare-ai-solutions' ? (
+              <HealthcareAICaseStudyModalContent onClose={() => setSelectedProject(null)} />
+            ) : (
+              <>
+                <div className="modal-header">
+                  <span className="modal-cat-tag">{selectedProject.categoryLabel} · {selectedProject.year}</span>
+                  <h2 id="modal-title">{selectedProject.name}</h2>
+                  <p className="modal-client">{selectedProject.client}</p>
+                </div>
 
-            <div className="modal-body">
-              <p className="modal-desc">{selectedProject.description}</p>
+                <div className="w-full h-48 sm:h-64 rounded-xl overflow-hidden mb-6 border border-slate-700/60 shadow-lg">
+                  <ProjectCardGraphic id={selectedProject.id} title={selectedProject.name} />
+                </div>
 
-              <div className="modal-metrics-box">
-                {selectedProject.metrics.map((m) => (
-                  <div key={m.label} className="modal-metric-col">
-                    <strong>{m.value}</strong>
-                    <span>{m.label}</span>
+                <div className="modal-body">
+                  <p className="modal-desc">{selectedProject.description}</p>
+
+                  {selectedProject.objectives && selectedProject.objectives.length > 0 && (
+                    <div className="modal-section-block">
+                      <h4>BUSINESS OBJECTIVES</h4>
+                      <ul className="modal-deliverables-list">
+                        {selectedProject.objectives.map((obj) => (
+                          <li key={obj}>
+                            <Target size={16} className="text-blue-500 shrink-0" />
+                            <span>{obj}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {selectedProject.challenges && selectedProject.challenges.length > 0 && (
+                    <div className="modal-section-block">
+                      <h4>PROJECT CHALLENGES</h4>
+                      <ul className="modal-deliverables-list">
+                        {selectedProject.challenges.map((ch) => (
+                          <li key={ch}>
+                            <AlertTriangle size={16} className="text-amber-500 shrink-0" />
+                            <span>{ch}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="modal-section-block">
+                    <h4>KEY PRODUCTION DELIVERABLES</h4>
+                    <ul className="modal-deliverables-list">
+                      {selectedProject.deliverables.map((d) => (
+                        <li key={d}>
+                          <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                ))}
-              </div>
 
-              {selectedProject.objectives && selectedProject.objectives.length > 0 && (
-                <div className="modal-section-block">
-                  <h4>BUSINESS OBJECTIVES</h4>
-                  <ul className="modal-deliverables-list">
-                    {selectedProject.objectives.map((obj) => (
-                      <li key={obj}>
-                        <Target size={16} className="text-blue-500 shrink-0" />
-                        <span>{obj}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {selectedProject.outcomes && selectedProject.outcomes.length > 0 && (
+                    <div className="modal-section-block">
+                      <h4>BUSINESS OUTCOMES & VALUE</h4>
+                      <ul className="modal-deliverables-list">
+                        {selectedProject.outcomes.map((out) => (
+                          <li key={out}>
+                            <Award size={16} className="text-purple-500 shrink-0" />
+                            <span>{out}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="modal-section-block">
+                    <h4>TECHNOLOGY STACK &amp; INFRASTRUCTURE</h4>
+                    <div className="modal-tech-pills">
+                      {selectedProject.techStack.map((tech) => (
+                        <span key={tech} className="modal-pill">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              )}
 
-              {selectedProject.challenges && selectedProject.challenges.length > 0 && (
-                <div className="modal-section-block">
-                  <h4>PROJECT CHALLENGES</h4>
-                  <ul className="modal-deliverables-list">
-                    {selectedProject.challenges.map((ch) => (
-                      <li key={ch}>
-                        <AlertTriangle size={16} className="text-amber-500 shrink-0" />
-                        <span>{ch}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="modal-footer">
+                  <Button asChild className="modal-discuss-btn">
+                    <Link to="/contact">
+                      Discuss This Solution with RightPPT <ArrowUpRight size={16} />
+                    </Link>
+                  </Button>
                 </div>
-              )}
-
-              <div className="modal-section-block">
-                <h4>KEY PRODUCTION DELIVERABLES</h4>
-                <ul className="modal-deliverables-list">
-                  {selectedProject.deliverables.map((d) => (
-                    <li key={d}>
-                      <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {selectedProject.outcomes && selectedProject.outcomes.length > 0 && (
-                <div className="modal-section-block">
-                  <h4>BUSINESS OUTCOMES & VALUE</h4>
-                  <ul className="modal-deliverables-list">
-                    {selectedProject.outcomes.map((out) => (
-                      <li key={out}>
-                        <Award size={16} className="text-purple-500 shrink-0" />
-                        <span>{out}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="modal-section-block">
-                <h4>TECHNOLOGY STACK &amp; INFRASTRUCTURE</h4>
-                <div className="modal-tech-pills">
-                  {selectedProject.techStack.map((tech) => (
-                    <span key={tech} className="modal-pill">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="modal-footer">
-              <Button asChild className="modal-discuss-btn">
-                <Link to="/contact">
-                  Discuss This Solution with RightPPT <ArrowUpRight size={16} />
-                </Link>
-              </Button>
-            </div>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -306,15 +306,7 @@ export function ServiceExplorer() {
           </div>
         </div>
 
-        {/* SERVICE KEY METRICS BANNER */}
-        <div className="service-metrics-banner reveal">
-          {deepDive.metrics.map((m) => (
-            <div className="service-metric-item" key={m.label}>
-              <strong>{m.stat}</strong>
-              <span>{m.label}</span>
-            </div>
-          ))}
-        </div>
+
 
         {/* SECTION 2: SPECIALIZED CAPABILITIES */}
         <div className="service-detail-section reveal">
