@@ -18,8 +18,7 @@ import {
   Users2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { RightPptLogo } from './RightPptLogo';
-import logoImg from '@/assets/right-ppt-logo.svg';
+import logoImg from '@/assets/new-logo.jpeg';
 import studioHero from '@/assets/studio-hero.jpg';
 import cityHero from '@/assets/city-hero.jpg';
 import ctaTechPlain from '@/assets/cta-tech-plain.jpg';
@@ -74,6 +73,7 @@ const nav = [
   { to: '/about' as const, name: 'About Us' },
   { to: '/services' as const, name: 'Services', hasDropdown: true },
   { to: '/projects' as const, name: 'Projects' },
+  { to: '/customer-delight' as const, name: 'Customer Delight' },
   { to: '/contact' as const, name: 'Contact Us' },
 ];
 
@@ -179,7 +179,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <header className="site-header">
         <div className="container header-inner">
           <Link to="/" aria-label="Right PPT Solutions home" className="logo-link">
-            <RightPptLogo className="site-logo" />
+            <img
+              src={logoImg}
+              alt="Right PPT Solutions"
+              className="site-logo"
+              width={160}
+              height={112}
+            />
           </Link>
 
           <nav className={menu ? 'navigation navigation-open' : 'navigation'} aria-label="Main navigation">
@@ -324,7 +330,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="container footer-main">
           <div className="footer-brand">
             <Link to="/" aria-label="Right PPT Solutions home" className="footer-logo-wrap">
-              <RightPptLogo className="footer-logo-img" />
+              <img
+                src={logoImg}
+                alt="Right PPT Solutions"
+                className="footer-logo-img"
+                loading="lazy"
+                width={210}
+                height={148}
+              />
             </Link>
             <p className="footer-brand-text">
               The right combination of <strong className="brand-dot-blue">People</strong>,{' '}

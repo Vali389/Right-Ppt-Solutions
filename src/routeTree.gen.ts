@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CustomerDelightRouteImport } from './routes/customer-delight'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ServicesServiceIdRouteImport } from './routes/services_.$serviceId'
@@ -29,6 +30,11 @@ const AboutRoute = AboutRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerDelightRoute = CustomerDelightRouteImport.update({
+  id: '/customer-delight',
+  path: '/customer-delight',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/customer-delight': typeof CustomerDelightRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/services/$serviceId': typeof ServicesServiceIdRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/customer-delight': typeof CustomerDelightRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/services/$serviceId': typeof ServicesServiceIdRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/customer-delight': typeof CustomerDelightRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/services_/$serviceId': typeof ServicesServiceIdRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/customer-delight'
     | '/projects'
     | '/services'
     | '/services/$serviceId'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/customer-delight'
     | '/projects'
     | '/services'
     | '/services/$serviceId'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/customer-delight'
     | '/projects'
     | '/services'
     | '/services_/$serviceId'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  CustomerDelightRoute: typeof CustomerDelightRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
   ServicesServiceIdRoute: typeof ServicesServiceIdRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer-delight': {
+      id: '/customer-delight'
+      path: '/customer-delight'
+      fullPath: '/customer-delight'
+      preLoaderRoute: typeof CustomerDelightRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  CustomerDelightRoute: CustomerDelightRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
   ServicesServiceIdRoute: ServicesServiceIdRoute,

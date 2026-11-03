@@ -306,59 +306,33 @@ export interface TestimonialItem {
   role: string;
 }
 
-export const customerTestimonies = [
-  {
-    quote:
-      'David is an incredible client manager and team leader. David and his team deliver exceptional quality work consistently on time and within budget.',
-    name: 'Customer Delight',
-    sector: 'SVP-AIA',
-    initial: 'S',
-  },
-  {
-    quote:
-      "I've worked with David on several projects so far and plan to continue our long-term collaboration. Their technical capability and communication are top notch.",
-    name: 'Long Term Partnership',
-    sector: 'Vice President-IT',
-    initial: 'V',
-  },
-  {
-    quote:
-      "I've worked with David and his team on several projects for over a decade. They bring true dedication, technical rigor, and complete dependability.",
-    name: 'Time Tested Relationship',
-    sector: 'SVP',
-    initial: 'S',
-  },
-  {
-    quote:
-      "My organization has been working with David's company for mission-critical software initiatives. They have consistently proven to be a valuable, trusted partner.",
-    name: 'Valuable Partner',
-    sector: 'VP',
-    initial: 'V',
-  },
-  {
-    quote:
-      'I have collaborated and partnered with David for a number of years. Their team understands complex enterprise needs and delivers with excellence.',
-    name: 'Trusted Partner',
-    sector: 'CEO',
-    initial: 'C',
-  },
-];
+import { customerDelightStories } from './data';
+
+export const customerTestimonies = customerDelightStories.map((s) => ({
+  quote: s.quote,
+  name: s.name,
+  sector: `${s.title} · ${s.organization}`,
+  initial: s.initials,
+  tone: s.tone,
+}));
 
 export function CustomerDelightSection() {
   return (
     <section className="section testimonials-section" id="customer-delight">
-      <SectionTitle
-        label="CUSTOMER DELIGHT"
-        title="Customer Delight & Client Testimonials"
-        description="Verified feedback and shared success stories from partners and technology leaders who rely on Right PPT Solutions."
-      />
+      <div className="container mb-8 text-center">
+        <SectionTitle
+          label="CUSTOMER DELIGHT"
+          title="Customer Delight & Client Testimonials"
+          description="Verified feedback and shared success stories from partners, association leaders, and technology executives who rely on Right PPT Solutions."
+        />
+      </div>
       <div className="testimonial-window">
         <div className="testimonial-track">
-          {[...customerTestimonies, ...customerTestimonies].map((t, i) => (
+          {[...customerDelightStories, ...customerDelightStories].map((t, i) => (
             <article
               className="testimonial-item"
-              key={i}
-              aria-hidden={i >= customerTestimonies.length ? true : undefined}
+              key={`${t.id}-${i}`}
+              aria-hidden={i >= customerDelightStories.length ? true : undefined}
             >
               <div className="quote-box">
                 <div className="quote-icon">
@@ -371,12 +345,20 @@ export function CustomerDelightSection() {
                 </div>
                 <blockquote>“{t.quote}”</blockquote>
               </div>
-              <span className="testimonial-avatar">{t.initial}</span>
+              <span className="testimonial-avatar">{t.initials}</span>
               <strong>{t.name}</strong>
-              <span className="testimonial-sector">{t.sector}</span>
+              <span className="testimonial-sector">{t.title} · {t.organization}</span>
             </article>
           ))}
         </div>
+      </div>
+      <div className="text-center mt-12">
+        <Button asChild size="lg" className="hero-cta-btn">
+          <Link to="/customer-delight">
+            <span>Explore All Customer Delight Endorsements</span>
+            <ArrowRight size={17} />
+          </Link>
+        </Button>
       </div>
     </section>
   );

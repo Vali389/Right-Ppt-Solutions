@@ -784,3 +784,121 @@ export const meta = (title: string, description: string) => ({
     { name: 'twitter:card', content: 'summary_large_image' },
   ],
 });
+
+export interface CustomerDelightStory {
+  id: string;
+  name: string;
+  title: string;
+  organization: string;
+  sectorTag: string;
+  tone: 'blue' | 'green' | 'violet' | 'cyan';
+  quote: string;
+  highlights: string[];
+  initials: string;
+  linkedin?: string;
+  verifiedBadge: string;
+  metric?: string;
+}
+
+export const customerDelightStories: CustomerDelightStory[] = [
+  {
+    id: 'kevin-novak',
+    name: 'Kevin Novak',
+    title: 'Chief Executive Officer (CEO)',
+    organization: '2040 Digital',
+    sectorTag: 'Digital Transformation & Executive Advisory',
+    tone: 'blue',
+    quote:
+      'I have collaborated and partnered with David & his team for a number of years. They are highly responsive, work to get clients the best outcome (financially and technically) and ensures the best resources are assigned. They routinely check in with clients to ensure they are satisfied with the progress and quality of work and take an active role to ensure everything stays on a positive and productive track and timeline.',
+    highlights: ['Multi-Year Collaboration', 'High Responsiveness', 'Financial & Technical Optimization'],
+    initials: 'KN',
+    verifiedBadge: 'Executive Partner',
+    metric: 'Multi-Year Partner',
+  },
+  {
+    id: 'deborah-debernard',
+    name: 'Deborah DeBernard',
+    title: 'Senior Vice President (SVP) - Emeritus',
+    organization: 'American Institute of Architects (AIA)',
+    sectorTag: 'Architecture & Contract Documents Technology',
+    tone: 'violet',
+    quote:
+      'David is an incredible client manager and team leader. While working on the American Institute of Architects - Contract Documents technology development project, David was a consistent bright beacon in a highly complex and challenging environment. He was unwavering in his support to the team and his clear, transparent communications to our leadership team. He has been a tremendous asset to our team, greatly assisting us to achieve our technology goals. Even when obstacles arose, David was the one person we knew we could turn to for important insights that generated results.',
+    highlights: ['AIA Contract Documents Technology', 'Unwavering Team Leadership', 'Mission-Critical Results'],
+    initials: 'DD',
+    verifiedBadge: 'Enterprise Leadership',
+    metric: 'AIA Technology Lead',
+  },
+  {
+    id: 'angel-baltimore',
+    name: 'Angel Baltimore',
+    title: 'Senior Vice President (SVP)',
+    organization: 'American Pharmacists Association (APhA)',
+    sectorTag: 'Association Web Platforms & Digital Products',
+    tone: 'green',
+    quote:
+      "I've worked with David and his team on several web development projects and each time the results exceeded our expectations. The professional and methodical approach in which his team manages projects (big or small) cannot be matched. In working with David I know I am going to get the job done on time and within budget. I've never had a problem working with his team and cannot wait until I am able to work with him again.",
+    highlights: ['On-time & Within Budget', 'Methodical Project Governance', 'Exceeded Expectations'],
+    initials: 'AB',
+    verifiedBadge: 'Verified Association Leader',
+    metric: 'On Time & In Budget',
+  },
+  {
+    id: 'bryce-house',
+    name: 'Bryce House',
+    title: 'IT Director',
+    organization: 'VP Demand Creation Services',
+    sectorTag: 'Enterprise IT Systems & Infrastructure',
+    tone: 'cyan',
+    quote:
+      'We’ve been working with David and his team for quite some time now. They’re very professional and consistent in their service offerings, and their willingness to go the extra mile has been invaluable. They have also supported technologies outside their usual scope, which has been extremely helpful. I would highly recommend their services.',
+    highlights: ['Supported Outside Usual Scope', 'Willingness to Go Extra Mile', 'Consistent Service Delivery'],
+    initials: 'BH',
+    verifiedBadge: 'Verified IT Director',
+    metric: 'Technology Expansion',
+  },
+  {
+    id: 'gary-brown',
+    name: 'Gary Brown',
+    title: 'Owner',
+    organization: 'SGTech services',
+    sectorTag: 'Custom Application Outsourcing & Engineering',
+    tone: 'blue',
+    quote:
+      "I've worked with RightPPT Solutions on several projects so far and plan to continue this business relationship for the foreseeable future. David and his organization have been great to work with. We've \"outsourced\" software development of a few initial applications with great results. They are easy to work with and very customer-service oriented.",
+    highlights: ['Software Application Outsourcing', 'Customer-Service Oriented', 'Ongoing Future Partnership'],
+    initials: 'GB',
+    verifiedBadge: 'Verified Client Partner',
+    metric: 'Software Outsourcing',
+  },
+  {
+    id: 'vanessa-dennison',
+    name: 'Vanessa Dennison, CAE, CBAP®',
+    title: 'Owner of Dennison & Associates and Co-Founder of Beacon Tech Research',
+    organization: 'Dennison & Associates / Beacon Tech Research',
+    sectorTag: 'Technology Selection & Association Research',
+    tone: 'violet',
+    quote:
+      "David has been the sales manager on selection projects we've conducted for our clients, and always has a great understanding of what the clients need, and how to solve their issues. He is helpfully persistent without being overwhelming as a sales lead and account manager, keeping things moving forward at an appropriate pace for the clients. He also helped my organization with sales efforts for a short time and did a great job trying to tailor his message to the prospects and leads. He is professional, smart, and great to work with!",
+    highlights: ['Client Needs Assessment', 'Tailored Messaging', 'Helpfully Persistent Leadership'],
+    initials: 'VD',
+    verifiedBadge: 'CAE / CBAP® Certified Partner',
+    metric: 'Tech Selection Lead',
+  },
+  {
+    id: 'helen-s',
+    name: 'Helen S',
+    title: 'Chief Executive Officer',
+    organization: 'Integrity Financial Group, Inc.',
+    sectorTag: 'Financial Services & Back-Office Automation',
+    tone: 'green',
+    quote:
+      'David has been great in helping our company expand and utilize back office processing more efficiently and productively. We look forward to continued success and efficiency.',
+    highlights: ['Back-Office Processing Expansion', 'Productivity & Efficiency', 'Executive Endorsement'],
+    initials: 'HS',
+    linkedin: 'https://www.linkedin.com/in/helen-s-241b2126/',
+    verifiedBadge: 'Verified CEO Partner',
+    metric: 'Back-Office Efficiency',
+  },
+];
+
