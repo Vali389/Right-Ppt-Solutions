@@ -456,9 +456,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <span>Innov8 Pranava Business Park- 7th Floor KONDAPUR, KOTHAGUDA, Telangana- 500084</span>
               </div>
             </div>
-            <div className="footer-hours-pill">
-              <span className="status-dot-pulse" /> Daily · 9:00 am – 5:00 pm IST
-            </div>
           </div>
         </div>
         <div className="container footer-bottom">

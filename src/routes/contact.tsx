@@ -4,7 +4,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  Clock,
   ArrowUpRight,
   CheckCircle2,
   Send,
@@ -161,16 +160,6 @@ ${formData.message.trim()}
                   <div className="channel-meta">
                     <small>Hyderabad Office Location</small>
                     <strong>Innov8 Pranava Business Park- 7th Floor KONDAPUR, KOTHAGUDA, Telangana- 500084</strong>
-                  </div>
-                </div>
-
-                <div className="contact-channel-item">
-                  <div className="channel-icon-box channel-icon-blue">
-                    <Clock size={20} />
-                  </div>
-                  <div className="channel-meta">
-                    <small>Business Operating Hours</small>
-                    <strong>Daily · 9:00 am – 5:00 pm IST</strong>
                   </div>
                 </div>
               </div>

@@ -6626,30 +6626,6 @@
   line-height: 1.5 !important;
 }
 
-.footer-hours-pill {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
-  border-radius: 20px !important;
-  padding: 6px 14px !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  color: #1e293b !important;
-  width: fit-content !important;
-  margin-top: 4px !important;
-}
-
-.footer-hours-pill .status-dot-pulse {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px #10b981;
-  display: inline-block;
-}
-
 /* =========================================================================
    14. MAIN CAPABILITIES SHOWCASE & PROJECT WORK STYLING
    ========================================================================= */
